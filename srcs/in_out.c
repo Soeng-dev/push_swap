@@ -26,18 +26,22 @@ void	pass_charset(char **str, const char *set)
 	return ;
 }
 
-int		read_int(char **s, int *is_error)
+int		read_int(char *s, int *is_error)
 {
 	long int	n;
 
 	n = 0;
-	pass_charset(s, " \t\f");
-	n = ft_atoi(*s);
-	if (**s == '-')
-		++(*s);
-	if (ft_isdigit(**s) == FALSE)
+	pass_charset(&s, " \t\f");
+	n = ft_atoi(s);
+	if (*s == '-')
+		++s;
+	if (ft_isdigit(*s) == FALSE)
 		*is_error = TRUE;
-	pass_charset(s, "0123456789");
-	if ((**s) && 
+	pass_charset(&s, "0123456789");
+	if (
 	return (n);
 }
+
+void		read_input(char 
+
+

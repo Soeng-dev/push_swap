@@ -4,7 +4,9 @@ NAME = push_swap
 
 
 # Files
-EXT_LIB = ./srcs/libft/libft.a
+EXT_LIB = libft.a
+
+LIB_PATH = ./includes/libft/
 
 SRC = ./srcs/main.c
 
@@ -39,10 +41,10 @@ re : fclean all
 ############### External library #################
 
 libft : 
-		$(MAKE) -C ./srcs/libft all bonus
+		$(MAKE) -C LIB_PATH all bonus
 
 clean_libft :
-		$(MAKE) -C ./srcs/libft clean
+		$(MAKE) -C LIB_PATH clean
 
 fclean_libft :
-		$(MAKE) -C ./srcs/libft fclean
+		$(MAKE) -C LIB_PATH fclean

@@ -12,16 +12,17 @@
 
 #include <unistd.h>
 #include <stdlib.h>
-#include "libft/libft.h"
+#include "../includes/libft.h"
 #include "../includes/in_out.h"
 
-int		main()
+int		main(int argc, char *argv[])
 {
-	t_list	*st_a;
-	t_list	*st_b;
+	t_list		*st_a;
+	t_list		*st_b;
 	int		pivot;
 	int		max;
 	int		min;
+	int		len;
 
 	return (0);
 }
