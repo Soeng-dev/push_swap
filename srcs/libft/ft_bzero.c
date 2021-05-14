@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   string.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/13 15:02:46 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/13 18:04:47 by soekim           ###   ########.fr       */
+/*   Created: 2020/11/10 14:44:51 by soekim            #+#    #+#             */
+/*   Updated: 2020/11/22 18:25:32 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include "libft/libft.h"
-#include "../includes/in_out.h"
+#include "libft.h"
 
-int		main()
+void	ft_bzero(void *s, size_t n)
 {
-	t_list	*st_a;
-	t_list	*st_b;
-	int		pivot;
-	int		max;
-	int		min;
+	int		i;
+	char	*str;
 
-	return (0);
+	i = (int)n;
+	str = (char *)s;
+	while (--i >= 0)
+		str[i] = 0;
 }

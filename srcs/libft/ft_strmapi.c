@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/13 15:02:46 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/13 18:04:47 by soekim           ###   ########.fr       */
+/*   Created: 2020/11/12 13:08:03 by soekim            #+#    #+#             */
+/*   Updated: 2020/11/20 15:41:20 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include "libft/libft.h"
-#include "../includes/in_out.h"
+#include "libft.h"
 
-int		main()
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	t_list	*st_a;
-	t_list	*st_b;
-	int		pivot;
-	int		max;
-	int		min;
+	int		len;
+	char	*ret;
 
-	return (0);
+	if (!s || !f)
+		return (0);
+	len = 0;
+	while (s[len])
+		len++;
+	ret = (char *)malloc(len + 1);
+	if (!ret)
+		return ((void *)0);
+	ret[len] = '\0';
+	while (--len >= 0)
+		ret[len] = f((unsigned int)len, s[len]);
+	return (ret);
 }

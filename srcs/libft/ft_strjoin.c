@@ -1,27 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/13 15:02:46 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/13 18:04:47 by soekim           ###   ########.fr       */
+/*   Created: 2020/11/10 14:44:51 by soekim            #+#    #+#             */
+/*   Updated: 2020/11/20 15:35:56 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include "libft/libft.h"
-#include "../includes/in_out.h"
+#include "libft.h"
 
-int		main()
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	t_list	*st_a;
-	t_list	*st_b;
-	int		pivot;
-	int		max;
-	int		min;
+	char	*ret;
+	char	*join;
 
-	return (0);
+	if (!s1 || !s2)
+		return (0);
+	if (!(join = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1)))
+		return ((void *)0);
+	ret = join;
+	while (*s1)
+	{
+		*join = *s1;
+		join++;
+		s1++;
+	}
+	while (*s2)
+	{
+		*join = *s2;
+		join++;
+		s2++;
+	}
+	*join = '\0';
+	return (ret);
 }

@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/13 15:02:46 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/13 18:04:47 by soekim           ###   ########.fr       */
+/*   Created: 2020/11/12 13:58:33 by soekim            #+#    #+#             */
+/*   Updated: 2020/11/19 15:45:05 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include "libft/libft.h"
-#include "../includes/in_out.h"
+#include "libft.h"
 
-int		main()
+void	ft_putnbr_fd(int n, int fd)
 {
-	t_list	*st_a;
-	t_list	*st_b;
-	int		pivot;
-	int		max;
-	int		min;
+	char	num;
 
-	return (0);
+	if (n >= 0 && n < 10)
+	{
+		n += '0';
+		num = (char)n;
+		write(fd, &num, 1);
+		return ;
+	}
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		if (n == -2147483648)
+		{
+			write(fd, "2", 1);
+			n = -147483648;
+		}
+		ft_putnbr_fd(-n, fd);
+		return ;
+	}
+	ft_putnbr_fd(n / 10, fd);
+	num = (char)((n % 10) + '0');
+	write(fd, &num, 1);
+	return ;
 }

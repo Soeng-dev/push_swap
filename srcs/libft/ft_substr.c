@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/13 15:02:46 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/13 18:04:47 by soekim           ###   ########.fr       */
+/*   Created: 2020/11/10 14:44:51 by soekim            #+#    #+#             */
+/*   Updated: 2020/11/24 00:20:41 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include "libft/libft.h"
-#include "../includes/in_out.h"
+#include "libft.h"
 
-int		main()
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	t_list	*st_a;
-	t_list	*st_b;
-	int		pivot;
-	int		max;
-	int		min;
+	char	*sub;
+	int		i;
 
-	return (0);
+	if (!s)
+		return (0);
+	i = ft_strlen(s);
+	if ((int)start >= i)
+		i = 0;
+	else if ((int)start + (int)len >= i)
+		i -= ((int)start);
+	else
+		i = (int)len;
+	if (!(sub = (char *)malloc(i + 1)))
+		return ((void *)0);
+	sub[i] = '\0';
+	while (i-- > 0)
+		sub[i] = s[(int)start + i];
+	return (sub);
 }

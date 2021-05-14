@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
+#include "../includes/in_out.h"
 
 void	pass_charset(char **str, const char *set)
 {
@@ -38,6 +38,6 @@ int		read_int(char **s, int *is_error)
 	if (ft_isdigit(**s) == FALSE)
 		*is_error = TRUE;
 	pass_charset(s, "0123456789");
-	
+	if ((**s) && 
 	return (n);
 }
