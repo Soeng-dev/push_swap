@@ -40,12 +40,9 @@ SRCS =	ft_memset.c			\
 		ft_putstr_fd.c		\
 		ft_putendl_fd.c		\
 		ft_putnbr_fd.c		\
-		ft_split.c		\
-		is_element.c
-
-OBJTS = ${SRCS:.c=.o}
-
-BONUS = ft_lstnew.c			\
+		ft_split.c			\
+		is_element.c		\
+		ft_lstnew.c			\
 		ft_lstadd_front.c	\
 		ft_lstsize.c		\
 		ft_lstlast.c		\
@@ -55,21 +52,18 @@ BONUS = ft_lstnew.c			\
 		ft_lstiter.c		\
 		ft_lstmap.c
 
-BONUS_OBJTS = ${BONUS:.c=.o}
+OBJTS = ${SRCS:.c=.o}
+
 
 all : $(NAME)
 	
-$(NAME) : ${OBJTS}
-	${AR} $(NAME) ${OBJTS}
-
-bonus : ${OBJTS} ${BONUS_OBJTS}
-	${AR} $(NAME) ${OBJTS} ${BONUS_OBJTS}
+$(NAME) : $(OBJTS)
+	$(AR) $(NAME) $(OBJTS)
 
 clean :
-	${RM} ${OBJTS} ${BONUS_OBJTS}
+	$(RM) $(OBJTS) $(BONUS_OBJTS)
 
 fclean : clean
-	${RM} $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
-

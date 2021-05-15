@@ -1,10 +1,10 @@
 
 #include "../includes/stack.h"
 
-void	push(t_list **st, int n)
+void	st_add(t_list **st, int n)
 {
 	t_list	*new;
-	int	*num;
+	int		*num;
 
 	num = (int *)malloc(sizeof(int));
 	if (!num)
@@ -16,14 +16,56 @@ void	push(t_list **st, int n)
 	return ;
 }
 
-void	pop(t_list **st)
+void	rotate(t_list **st)
 {
-	t_list	*to_delete;
+	t_list	*first;
 
-	to_delete = *st;
+	if (!(*st) || !(*st)->next)
+		return ;
+	first = *st;
 	*st = (*st)->next;
-	ft_lstdelone(to_delete, free);
+	first->next = NULL;
+	ft_lstadd_back(st, first);
 	return ;
 }
 
-void	rotate(t_list **st)
+void	rev_rotate(t_list **st)
+{
+	t_list	*befo_last;
+	t_list	*last;
+
+	if (!(*st) || !(*st)->next)
+		return ;
+	befo_last = *st;
+	while (befo_last->next->next)
+		befo_last = befo_last->next;
+	last = befo_last->next;
+	befo_last->next = NULL;
+	ft_lstadd_front(st, last);
+	return ;
+}
+
+void	swap(t_list *st)
+{
+	int		*temp;
+
+	if (!st || !st->next)
+		return ;
+	temp = (int *)st->content;
+	st->content = st->next->content;
+	st->next->content = (void *)temp;
+	return ;
+}
+
+void	push(t_list **to, t_list **from)
+{
+	t_list	*target;
+
+	if (!(*from))
+		return ;
+	target = *from;
+	*from = (*from)->next;
+	target->next = *to;
+	*to = target;
+	return ;
+}

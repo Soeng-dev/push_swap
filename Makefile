@@ -8,7 +8,10 @@ EXT_LIB = libft.a
 
 LIB_PATH = ./includes/libft/
 
-SRC = ./srcs/main.c
+SRC = ./srcs/main.c			\
+	  ./srcs/command.c		\
+	  ./srcs/input.c		\
+	  ./srcs/stack.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -19,10 +22,10 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-all : $(NAME)
+all : $(NAME) libft
 
 $(NAME) : $(OBJ) libft
-		$(CC) $(CFLAGS) $(EXT_LIB) $(OBJ) -o $(NAME)
+		$(CC) $(CFLAGS) $(LIB_PATH)$(EXT_LIB) $(OBJ) -o $(NAME)
 
 
 
@@ -32,19 +35,20 @@ RM : rm -f
 clean : clean_libft
 		$(RM) $(OBJ)
 
-fclean : fclean_libft
+fclean : clean fclean_libft
 		$(RM) $(NAME)
 
 re : fclean all
 
 
+
 ############### External library #################
 
-libft : 
-		$(MAKE) -C LIB_PATH all bonus
+libft :
+		$(MAKE) -C $(LIB_PATH) all
 
 clean_libft :
-		$(MAKE) -C LIB_PATH clean
+		$(MAKE) -C $(LIB_PATH) clean
 
 fclean_libft :
-		$(MAKE) -C LIB_PATH fclean
+		$(MAKE) -C $(LIB_PATH) fclean
