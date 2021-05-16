@@ -1,22 +1,22 @@
 
 #include "../includes/command.h"
 
-void	cmd_s(char target, t_list *st_a, t_list *st_b)
+void	cmd_s(char target, t_list **st_a, t_list **st_b)
 {
 	if (target == 'a')
 	{
-		swap(st_a);
+		swap(*st_a);
 		ft_putstr_fd("sa\n", 1);
 	}
 	else if (target == 'b')
 	{
-		swap(st_b);
+		swap(*st_b);
 		ft_putstr_fd("sb\n", 1);
 	}
 	else if (target == 's')
 	{
-		swap(st_a);
-		swap(st_b);
+		swap(*st_a);
+		swap(*st_b);
 		ft_putstr_fd("ss\n", 1);
 	}
 	return ;

@@ -10,8 +10,9 @@ LIB_PATH = ./includes/libft/
 
 SRC = ./srcs/main.c			\
 	  ./srcs/command.c		\
-	  ./srcs/input.c		\
-	  ./srcs/stack.c
+	  ./srcs/in_out.c		\
+	  ./srcs/stack.c		\
+	  ./srcs/utils.c
 
 OBJ = $(SRC:.c=.o)
 

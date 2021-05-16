@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 14:44:51 by soekim            #+#    #+#             */
-/*   Updated: 2020/11/22 18:26:20 by soekim           ###   ########.fr       */
+/*   Updated: 2021/05/16 15:59:57 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ static int	is_longint_underflow(const char *str, size_t numlen)
 	return (0);
 }
 
-int			ft_atoi(const char *str)
+long int	ft_atoi(const char *str)
 {
-	int		ret;
-	int		sign;
-	int		numlen;
+	long int	ret;
+	int			sign;
+	int			numlen;
 
 	ret = 0;
 	numlen = 0;
@@ -63,7 +63,7 @@ int			ft_atoi(const char *str)
 		str++;
 	}
 	while (str[numlen] >= '0' && str[numlen] <= '9')
-		ret = 10 * ret + ((int)(str[numlen++]) - '0');
+		ret = 10 * ret + (long int)((str[numlen++]) - '0');
 	if (sign > 0)
 	{
 		if (is_longint_overflow(str, numlen))
@@ -72,5 +72,5 @@ int			ft_atoi(const char *str)
 	else if (sign < 0)
 		if (is_longint_underflow(str, numlen))
 			return (0);
-	return (sign * ret);
+	return ((long int)sign * ret);
 }
