@@ -30,3 +30,19 @@ void	pass_charset(char **str, const char *set)
 	}
 	return ;
 }
+
+int		get_mid(t_list *list)
+{
+	int		mini;
+	int		maxi;
+	int		mid;
+
+	while (list)
+	{
+		mini = min(*(int *)i->content, mini);
+		maxi = max(*(int *)i->content, mini);
+		list = list->next;
+	}
+	mid = (mini + maxi) / 2;
+	return (mid);
+}
