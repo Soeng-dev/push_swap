@@ -6,19 +6,20 @@ void	rotate_and_move(t_sort_info *sort							\
 	return ;
 }
 
-void	set_rotate(t_rotate *rot, t_list *target)
+void	count_rotate(t_list *target, int *count_r, int *count_rr)
 {
-	int			count_r;
-	int			count_rr;
+	int		count;
 
-	count_r = 0;
+	count = 0;
+	*count_r = 0;
 	while (target)
 	{
-		if (*(int *)target->content > pivot)
-			++count_r;
+		if (*(int *)target->content <= pivot)
+			*count_r = count;
+		++count;
 		target = target->next;
 	}
-	count_rr = ft_lstsize(*from);
+	count_rr = ft_lstsize(*from) + 1;
 	while (target)
 	{
 		if (*(int *)target->content <= pivot)
@@ -26,6 +27,15 @@ void	set_rotate(t_rotate *rot, t_list *target)
 		--count_rr;
 		target = target->next;
 	}
+	return ;
+}
+
+void	set_rotate(t_rotate *rot, t_list *target)
+{
+	int			count_r;
+	int			count_rr;
+
+	count_rotate(target, &count_r, &count_rr);
 	if (count_r < count_rr)
 	{
 		rot->count = count_r;
@@ -36,6 +46,7 @@ void	set_rotate(t_rotate *rot, t_list *target)
 		rot->count = count_rr;
 		rot->func = cmd_rr;
 	}
+	return ;
 }
 
 void	move_small(t_list **to, t_list **from)

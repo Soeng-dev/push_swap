@@ -16,32 +16,42 @@ void	st_add(t_list **st, int n)
 	return ;
 }
 
-void	rotate(t_list **st)
+void	pop(t_list **st)
 {
-	t_list	*first;
+	t_list	*to_delete;
 
-	if (!(*st) || !(*st)->next)
-		return ;
-	first = *st;
+	to_delete = *st;
 	*st = (*st)->next;
-	first->next = NULL;
-	ft_lstadd_back(st, first);
+	ft_lstdelone(to_delete, free);
 	return ;
 }
 
-void	rev_rotate(t_list **st)
+void	rotate(t_list **st, int dir)
 {
+	t_list	*first;
 	t_list	*befo_last;
 	t_list	*last;
 
 	if (!(*st) || !(*st)->next)
 		return ;
-	befo_last = *st;
-	while (befo_last->next->next)
-		befo_last = befo_last->next;
-	last = befo_last->next;
-	befo_last->next = NULL;
-	ft_lstadd_front(st, last);
+	if (dir == ROT_FORWARD)
+	{
+		first = *st;
+		*st = (*st)->next;
+		first->next = NULL;
+		ft_lstadd_back(st, first);
+	}
+	else if (dir == ROT_REVERSE)
+	{
+		befo_last = *st;
+		while (befo_last->next->next)
+			befo_last = befo_last->next;
+		last = befo_last->next;
+		befo_last->next = NULL;
+		ft_lstadd_front(st, last);
+	}
+	else
+		return ;
 	return ;
 }
 
