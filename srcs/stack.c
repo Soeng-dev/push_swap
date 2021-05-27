@@ -6,6 +6,10 @@ void	st_add(t_list **st, int n)
 	t_list	*new;
 	int		*num;
 
+	if (!st)
+		return ;
+	if (!(*st))
+		return ;
 	num = (int *)malloc(sizeof(int));
 	if (!num)
 		return ;
@@ -20,6 +24,10 @@ void	pop(t_list **st)
 {
 	t_list	*to_delete;
 
+	if (!st)
+		return ;
+	if (!(*st))
+		return ;
 	to_delete = *st;
 	*st = (*st)->next;
 	ft_lstdelone(to_delete, free);
