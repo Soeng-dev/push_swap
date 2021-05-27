@@ -31,18 +31,20 @@ void	pass_charset(char **str, const char *set)
 	return ;
 }
 
-int		get_mid(t_list *list)
+int		get_mid(t_data *target)
 {
 	int		mini;
 	int		maxi;
-	int		mid;
+	int		i;
+	t_list	*list;
 
-	while (list)
+	i = *(int *)target->loaf->content;
+	list = target->stack;
+	while (--i >= 0)
 	{
 		mini = min(*(int *)i->content, mini);
 		maxi = max(*(int *)i->content, mini);
 		list = list->next;
 	}
-	mid = (mini + maxi) / 2;
-	return (mid);
+	return ((mini + maxi) / 2);
 }

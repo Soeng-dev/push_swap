@@ -23,6 +23,7 @@ int		main(int argc, char *argv[])
 {
 	t_list		*st_a;
 	t_list		*st_b;
+	t_sort_info	sort;
 
 	if (!argc)
 		return (0);
