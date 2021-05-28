@@ -1,5 +1,5 @@
 
-#include "../includes/utils.h"
+#include "../../includes/utils.h"
 
 int		min(int a, int b)
 {
@@ -31,20 +31,12 @@ void	pass_charset(char **str, const char *set)
 	return ;
 }
 
-int		get_mid(t_data *target)
+int		is_bigger(int target, int pivot)
 {
-	int		mini;
-	int		maxi;
-	int		i;
-	t_list	*list;
+	return (target > pivot);
+}
 
-	i = *(int *)target->loaf->content;
-	list = target->stack;
-	while (--i >= 0)
-	{
-		mini = min(*(int *)i->content, mini);
-		maxi = max(*(int *)i->content, mini);
-		list = list->next;
-	}
-	return ((mini + maxi) / 2);
+int		is_smaller(int target, int pivot)
+{
+	return (target < pivot);
 }

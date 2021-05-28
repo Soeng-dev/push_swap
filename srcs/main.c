@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 15:02:46 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/16 17:08:20 by soekim           ###   ########.fr       */
+/*   Updated: 2021/05/28 19:12:39 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int		main(int argc, char *argv[])
 {
 	t_list		*st_a;
 	t_list		*st_b;
-	t_sort_info	sort;
 
 	if (!argc)
 		return (0);

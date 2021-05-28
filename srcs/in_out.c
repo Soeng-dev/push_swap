@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 17:53:16 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/16 20:08:50 by soekim           ###   ########.fr       */
+/*   Updated: 2021/05/28 19:25:36 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	read_input(char **input, t_list **st)
 		temp = (*st)->next;
 		while (temp)
 		{
-			if (*(int*)(*st)->content = *(int*)temp->content)
+			if (*(int*)(*st)->content == *(int*)temp->content)
 				is_error = TRUE;
 			temp = temp->next;
 		}
