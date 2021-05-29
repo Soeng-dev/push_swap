@@ -8,8 +8,6 @@ void	st_add(t_list **st, int n)
 
 	if (!st)
 		return ;
-	if (!(*st))
-		return ;
 	num = (int *)malloc(sizeof(int));
 	if (!num)
 		return ;

@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 15:02:46 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/29 16:24:10 by soekim           ###   ########.fr       */
+/*   Updated: 2021/05/29 16:58:55 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include "../includes/stack.h"
 #include "../includes/command.h"
 
-
 //check when one arg passed
 int		main(int argc, char *argv[])
 {
@@ -26,8 +25,9 @@ int		main(int argc, char *argv[])
 
 	if (argc <= 2)
 		return (0);
-	read_input(argv + 1, &st_a);
+	st_a = NULL;
 	st_b = NULL;
+	read_input(argv + 1, &st_a);
 	print_stacks(st_a, st_b);
 	
 	cmd_p('b', &st_a, &st_b);
