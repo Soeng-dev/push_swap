@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 17:53:16 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/29 16:52:10 by soekim           ###   ########.fr       */
+/*   Updated: 2021/05/29 17:17:43 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ int		read_int(char *s, int *is_error)
 	return (n);
 }
 
-void	read_input(char **input, t_list **st)
+void	read_input(char **argv, t_list **st)
 {
 	int		is_error;
 	t_list	*temp;
 
 	is_error = FALSE;
-	while (*input)
+	while (*argv)
 	{
-		st_add(st, read_int(*input, &is_error));
-		input++;
+		st_add(st, read_int(*argv, &is_error));
+		argv++;
 		temp = (*st)->next;
 		while (temp)
 		{

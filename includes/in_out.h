@@ -12,7 +12,7 @@
 # include "utils.h"
 
 int		read_int(char *s, int *is_error);
-void	read_input(char **input, t_list **st);
+void	read_input(char **argv, t_list **st);
 void	print_stacks(t_list *st_a, t_list *st_b);
 
 #endif

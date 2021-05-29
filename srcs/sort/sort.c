@@ -6,12 +6,13 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:55:17 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/29 16:17:15 by soekim           ###   ########.fr       */
+/*   Updated: 2021/05/29 17:10:22 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/sort.h"
 
+//change sort ascend as optimized form written in note
 void		sort_ascend(t_data *data)
 {
 	int		i;
