@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:56:46 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/28 19:48:06 by soekim           ###   ########.fr       */
+/*   Updated: 2021/05/29 15:21:30 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	count_revrot(t_sort_info *info, int *count_rr)
 	return ;
 }
 
-static void	set_target(t_sort_info *info, t_input *input, int from_to)
+void		set_target(t_sort_info *info, t_input *input, int from_to)
 {
 	if (from_to == A_TO_B)
 	{
@@ -97,9 +97,6 @@ void		set_sort_info(t_sort_info *info, t_input *input, int from_to)
 		info->move.count = count_rr;
 		info->move.func = move_by_rr;
 	}
-	if (from_to == A_TO_B)
-		info->move.rule = is_bigger;
-	else if (from_to == B_TO_A)
-		info->move.rule = is_smaller;
+	info->move.rule = is_smaller;
 	return ;
 }

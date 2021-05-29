@@ -58,8 +58,6 @@ void	rotate(t_list **st, int dir)
 		befo_last->next = NULL;
 		ft_lstadd_front(st, last);
 	}
-	else
-		return ;
 	return ;
 }
 

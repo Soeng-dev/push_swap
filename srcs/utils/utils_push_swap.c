@@ -26,8 +26,8 @@ int		is_divided(t_list *loaf)
 	while (loaf)
 	{
 		if (*(int *)loaf->content != 1)
-			return (0);
+			return (FALSE);
 		loaf = loaf->next;
 	}
-	return (1);
+	return (TRUE);
 }

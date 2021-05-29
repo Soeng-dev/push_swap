@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 15:02:46 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/28 19:12:39 by soekim           ###   ########.fr       */
+/*   Updated: 2021/05/29 16:24:10 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		main(int argc, char *argv[])
 	t_list		*st_a;
 	t_list		*st_b;
 
-	if (!argc)
+	if (argc <= 2)
 		return (0);
 	read_input(argv + 1, &st_a);
 	st_b = NULL;
