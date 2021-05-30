@@ -16,6 +16,7 @@ SRC = ./srcs/main.c							\
 	  ./srcs/utils/utils_push_swap.c		\
 	  ./srcs/sort/set_sort.c				\
 	  ./srcs/sort/loaf.c					\
+	  ./srcs/sort/sort3to_a.c				\
 	  ./srcs/sort/sort.c
 
 OBJ = $(SRC:.c=.o)

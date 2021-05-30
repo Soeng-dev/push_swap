@@ -27,7 +27,8 @@ void	divide_loaf(t_sort_info *info, t_input *input, int from_to);
 /*
 **		sort
 */
-void	sort_ascend(t_data *data);
+void	sort_directly(t_input *input, int from_to);
+void	sort3_to_a(t_input *input, int from_to);
 void	sort(t_input *input);
 
 #endif

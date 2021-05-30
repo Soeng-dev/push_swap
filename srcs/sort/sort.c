@@ -6,39 +6,51 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:55:17 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/29 17:10:22 by soekim           ###   ########.fr       */
+/*   Updated: 2021/05/30 20:44:07 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/sort.h"
 
-//change sort ascend as optimized form written in note
-void		sort_ascend(t_data *data)
+/*
+**		after sort2_to_a or sort3_to_a, sorted element is rotated,
+**		and input->loaf is not divided and rotated, which is dealed at sort_directly
+*/
+
+static void	sort2_to_a(t_input *input, int from_to)
+{
+	if (from_to == A_TO_B && is_ascending(&input->a) == FALSE)
+		cmd_s('a', &input->a.stack, &input->b.stack);
+	else if (from_to == B_TO_A)
+	{
+		if (is_ascending(&input->b))
+			cmd_s('b', &input->a.stack, &input->b.stack);
+		move_loaf(input, B_TO_A);
+	}
+	cmd_repeat(cmd_r, input, 'a', 2);
+	return ;
+}
+
+void		sort_directly(t_input *input, int from_to)
 {
 	int		i;
-	t_list	*front;
-	t_list	*back;
+	t_data	*tar_data;
 
-	front = data->stack;
-	while (front)
-	{
-		back = front->next;
-		while (back)
-		{
-			if (*(int *)back->content < *(int *)front->content)
-			{
-				i = *(int *)back->content;
-				*(int *)back->content = *(int *)front->content;
-				*(int *)front->content = i;
-			}
-			back = back->next;
-		}
-		front = front->next;
-	}
-	i = *(int *)data->loaf->content;
-	pop(&data->loaf);
+	if (from_to == A_TO_B)
+		tar_data = &input->a;
+	else
+		tar_data = &input->b;
+	if (*(int *)tar_data->loaf->content == 2)
+		sort2_to_a(input, from_to);
+	else if (*(int *)tar_data->loaf->content == 3)
+		sort3_to_a(input, from_to);
+	i = *(int *)input->a.loaf->content;
+	pop(&input->a.loaf);
 	while (--i >= 0)
-		st_add(&data->loaf, 1);
+	{
+		st_add(&input->a.loaf, 1);
+		rotate(&input->a.loaf, ROT_FORWARD);
+	}
 	return ;
 }
 
@@ -48,13 +60,13 @@ void		sort(t_input *input)
 
 	while (is_divided(input->a.loaf) == FALSE)
 	{
+		while (*(int *)input->a.loaf->content == 1)
+			rotate_loaf(&input->a);
 		divide_loaf(&info, input, A_TO_B);
 		if (is_divided(input->b.loaf))
 			move_loaf(input, B_TO_A);
 		while (is_divided(input->b.loaf) == FALSE)
-		{
 			divide_loaf(&info, input, B_TO_A);
-		}
 	}
 	return ;
 }

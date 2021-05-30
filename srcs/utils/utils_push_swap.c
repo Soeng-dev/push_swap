@@ -31,3 +31,47 @@ int		is_divided(t_list *loaf)
 	}
 	return (TRUE);
 }
+
+int		is_ascending(t_data *data)
+{
+	int		i;
+	t_list	*front;
+	t_list	*back;
+
+	i = *(int *)data->loaf->content;
+	front = data->stack;
+	while (--i >= 0)
+	{
+		back = front->next;
+		while (back)
+		{
+			if (*(int *)front->content > *(int *)back->content)
+				return (FALSE);
+			back = back->next;
+		}
+		front = front->next;
+	}
+	return (TRUE);
+}
+
+int		is_descending(t_data *data)
+{
+	int		i;
+	t_list	*front;
+	t_list	*back;
+
+	i = *(int *)data->loaf->content;
+	front = data->stack;
+	while (--i >= 0)
+	{
+		back = front->next;
+		while (back)
+		{
+			if (*(int *)front->content < *(int *)back->content)
+				return (FALSE);
+			back = back->next;
+		}
+		front = front->next;
+	}
+	return (TRUE);
+}

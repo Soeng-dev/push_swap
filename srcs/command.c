@@ -78,3 +78,11 @@ void	cmd_rr(char target, t_list **st_a, t_list **st_b)
 	}
 	return ;
 }
+
+void	cmd_repeat(void (*cmd)(char, t_list **, t_list **),				\
+					t_input *input, char target, int n)
+{
+	while (--n >= 0)
+		cmd(target, &input->a.stack, &input->b.stack);
+	return ;
+}

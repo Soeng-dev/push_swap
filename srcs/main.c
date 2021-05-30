@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 15:02:46 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/29 17:18:26 by soekim           ###   ########.fr       */
+/*   Updated: 2021/05/30 20:43:40 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ int		main(int argc, char *argv[])
 	if (argc <= 2)
 		return (0);
 	ft_memset(&input, 0, sizeof(t_input));
-	read_input(argv + 1, &input.a.stack);
-	st_add(&input.a.loaf, 1);
-	sort_ascend(&input.a);
-
+	read_input(argv + 1, &input.b.stack);
+	st_add(&input.b.loaf, argc - 1);
+	print_stacks(input.a.stack, input.b.stack);
+	
+	sort_directly(&input, B_TO_A);
 	print_stacks(input.a.stack, input.b.stack);
 //	
 //	cmd_p('b', &st_a, &st_b);

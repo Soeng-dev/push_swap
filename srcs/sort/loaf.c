@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:55:17 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/29 16:23:22 by soekim           ###   ########.fr       */
+/*   Updated: 2021/05/30 19:37:20 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void		move_loaf(t_input *input, int from_to)
 	int			i;
 	t_sort_info	move;
 
+	ft_memset(&move, 0, sizeof(t_sort_info));
 	set_target(&move, input, from_to);
 	i = *(int *)move.orig.data->loaf->content;
 	while (--i >= 0)
@@ -80,6 +81,10 @@ void		move_loaf(t_input *input, int from_to)
 	st_add(&move.dest.data->loaf, i);
 }
 
+/*
+** 		divide_loaf divide one loaf to two loafes if loaf bigger than 3, 
+**		other wise in size-one-loafes.
+*/
 void		divide_loaf(t_sort_info *info, t_input *input, int from_to)
 {
 	set_sort_info(info, input, from_to);
@@ -91,10 +96,6 @@ void		divide_loaf(t_sort_info *info, t_input *input, int from_to)
 	}
 	else if (*(int *)info->orig.data->loaf->content == 3 ||				\
 			*(int *)info->orig.data->loaf->content == 2)
-	{
-		if (from_to == B_TO_A)
-			move_loaf(input, B_TO_A);
-		sort_ascend(&input->a);
-	}
+		sort_directly(input, from_to);
 	return ;
 }
