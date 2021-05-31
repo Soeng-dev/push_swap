@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:56:46 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/29 15:21:30 by soekim           ###   ########.fr       */
+/*   Updated: 2021/05/31 17:11:24 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void		set_target(t_sort_info *info, t_input *input, int from_to)
 	{
 		info->orig.name = 'b';
 		info->orig.data = &input->b;
-		info->orig.name = 'a';
+		info->dest.name = 'a';
 		info->dest.data = &input->a;
 	}
 	return ;

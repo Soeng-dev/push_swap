@@ -6,15 +6,16 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:55:17 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/30 20:44:07 by soekim           ###   ########.fr       */
+/*   Updated: 2021/05/31 18:29:24 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/sort.h"
 
 /*
-**		after sort2_to_a or sort3_to_a, sorted element is rotated,
-**		and input->loaf is not divided and rotated, which is dealed at sort_directly
+**		After sort2_to_a or sort3_to_a, sorted element is rotated,
+**		and input->loaf is not divided and rotated, 
+**		which is dealed at sort_directly.
 */
 
 static void	sort2_to_a(t_input *input, int from_to)
@@ -37,13 +38,15 @@ void		sort_directly(t_input *input, int from_to)
 	t_data	*tar_data;
 
 	if (from_to == A_TO_B)
-		tar_data = &input->a;
+		tar_data = &(input->a);
 	else
-		tar_data = &input->b;
+		tar_data = &(input->b);
 	if (*(int *)tar_data->loaf->content == 2)
 		sort2_to_a(input, from_to);
 	else if (*(int *)tar_data->loaf->content == 3)
 		sort3_to_a(input, from_to);
+	else
+		return ;
 	i = *(int *)input->a.loaf->content;
 	pop(&input->a.loaf);
 	while (--i >= 0)

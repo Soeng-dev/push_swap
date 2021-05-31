@@ -6,6 +6,7 @@
 # define ROT_REVERSE	-1
 
 # include "libft/libft.h"
+# include "in_out.h"
 
 void	st_add(t_list **st, int n);
 void	pop(t_list **st);

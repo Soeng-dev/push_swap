@@ -38,6 +38,10 @@ int		is_ascending(t_data *data)
 	t_list	*front;
 	t_list	*back;
 
+	if (!data)
+		return (TRUE);
+	if (!data->loaf || !data->stack)
+		return (TRUE);
 	i = *(int *)data->loaf->content;
 	front = data->stack;
 	while (--i >= 0)

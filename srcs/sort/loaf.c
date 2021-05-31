@@ -6,11 +6,14 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:55:17 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/30 19:37:20 by soekim           ###   ########.fr       */
+/*   Updated: 2021/05/31 18:19:23 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/sort.h"
+
+
+# include <stdio.h>
 
 void		move_by_r(void *sort_info, t_input *input)
 {
@@ -73,6 +76,8 @@ void		move_loaf(t_input *input, int from_to)
 
 	ft_memset(&move, 0, sizeof(t_sort_info));
 	set_target(&move, input, from_to);
+	if (!move.orig.data->stack)
+		return ;
 	i = *(int *)move.orig.data->loaf->content;
 	while (--i >= 0)
 		cmd_p(move.dest.name, &input->a.stack, &input->b.stack);
@@ -94,8 +99,7 @@ void		divide_loaf(t_sort_info *info, t_input *input, int from_to)
 		if (from_to == B_TO_A)
 			rotate_loaf(&input->a);
 	}
-	else if (*(int *)info->orig.data->loaf->content == 3 ||				\
-			*(int *)info->orig.data->loaf->content == 2)
+	else if (*(int *)info->orig.data->loaf->content <= 3)\
 		sort_directly(input, from_to);
 	return ;
 }

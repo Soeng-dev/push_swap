@@ -6,11 +6,13 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 18:22:50 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/30 20:45:39 by soekim           ###   ########.fr       */
+/*   Updated: 2021/05/31 17:01:12 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/sort.h"
+
+# include <stdio.h>
 
 static int	sort3_a_1(int first, int second, int third, t_input *input)
 {
