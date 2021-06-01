@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:56:46 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/31 17:11:24 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/01 17:58:16 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ static void	count_rotate(t_sort_info *info, int *count_r)
 	i = *(int *)info->orig.data->loaf->content;
 	target = info->orig.data->stack;
 	count = 0;
-	*count_r = 0;
 	while (--i >= 0)
 	{
-		if (*(int *)target->content > info->pivot)
-			*count_r = count;
 		++count;
+		if (info->move.rule									\
+			(*(int *)target->content, info->pivot) == TRUE)
+			*count_r = count;
 		target = target->next;
 	}
 	return ;
@@ -38,21 +38,23 @@ static void	count_revrot(t_sort_info *info, int *count_rr)
 	int		i;
 
 	target = info->orig.data->stack;
-	i = *(int*)info->orig.data->loaf->content;
 	*count_rr = ft_lstsize(target);
+	i = *(int*)info->orig.data->loaf->content;
 	while (--i >= 0)
 	{
-		if (*(int *)target->content > info->pivot)
+		if (info->move.rule									\
+			(*(int *)target->content, info->pivot) == TRUE)
 			break;
-		--count_rr;
+		--(*count_rr);
 		target = target->next;
 	}
 	i = *(int*)info->orig.data->loaf->content;
 	target = info->orig.data->stack;
 	while (--i >= 0)
 	{
-		if (*(int *)target->content > info->pivot)
-			++count_rr;
+		if (info->move.rule									\
+			(*(int *)target->content, info->pivot) == TRUE)
+			++(*count_rr);
 		target = target->next;
 	}
 	return ;
@@ -82,9 +84,12 @@ void		set_sort_info(t_sort_info *info, t_input *input, int from_to)
 	int		count_r;
 	int		count_rr;
 
+	count_r = 0;
+	count_rr = 0;
 	ft_memset(info, 0, sizeof(t_sort_info));
 	set_target(info, input, from_to);
 	info->pivot = get_mid(info->orig.data);
+	info->move.rule = is_smaller;
 	count_rotate(info, &count_r);
 	count_revrot(info, &count_rr);
 	if (count_r <= count_rr)
@@ -97,6 +102,6 @@ void		set_sort_info(t_sort_info *info, t_input *input, int from_to)
 		info->move.count = count_rr;
 		info->move.func = move_by_rr;
 	}
-	info->move.rule = is_smaller;
+	printf("r : %d		rr : %d\n", count_r, count_rr);
 	return ;
 }
