@@ -9,6 +9,7 @@
 # include "in_out.h"
 
 void	st_add(t_list **st, int n);
+void	st_add_last(t_list **st, int n);
 void	pop(t_list **st);
 void	rotate(t_list **st, int dir);
 void	swap(t_list *st);

@@ -14,6 +14,6 @@
 int		read_int(char *s, int *is_error);
 void	read_input(char **argv, t_list **st);
 void	print_stacks(t_list *st_a, t_list *st_b);
-void	print_loaf(t_list *loaf);
+void	print_loaf(t_input *input);
 
 #endif

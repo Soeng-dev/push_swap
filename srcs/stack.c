@@ -18,6 +18,22 @@ void	st_add(t_list **st, int n)
 	return ;
 }
 
+void	st_add_last(t_list **st, int n)
+{
+	t_list	*new;
+	int		*num;
+
+	if (!st)
+		return ;
+	num = (int *)malloc(sizeof(int));
+	if (!num)
+		return ;
+	*num = n;
+	new = ft_lstnew((void *)num);
+	ft_lstadd_back(st, new);
+	return ;
+}
+
 void	pop(t_list **st)
 {
 	t_list	*to_delete;

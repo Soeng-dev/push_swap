@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:55:17 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/01 17:02:48 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/01 22:44:55 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,21 @@ void		move_by_rr(void *sort_info, t_input *input)
 	return ;
 }
 
-void		rotate_loaf(t_data *data)
+void		rotate_loaf(char target, t_input *input)
 {
 	int		i;
 
-	i = *(int *)data->loaf->content;
-	while (--i >= 0)
-		rotate(&data->stack, ROT_FORWARD);
-	rotate(&data->loaf, ROT_FORWARD);
+	if (target == 'a')
+		i = *(int *)input->a.loaf->content;
+	else if (target == 'b')
+		i = *(int *)input->b.loaf->content;
+	else
+		return ;
+	cmd_repeat(cmd_r, input, target, i);
+	if (target == 'a')
+		rotate(&input->a.loaf, ROT_FORWARD);
+	else if (target == 'b')
+		rotate(&input->b.loaf, ROT_FORWARD);
 	return ;
 }
 
@@ -81,7 +88,6 @@ void		move_loaf(t_input *input, int from_to)
 	i = *(int *)move.orig.data->loaf->content;
 	while (--i >= 0)
 		cmd_p(move.dest.name, &input->a.stack, &input->b.stack);
-	i = *(int *)move.orig.data->loaf->content;
 	pop(&move.orig.data->loaf);
 	st_add(&move.dest.data->loaf, i);
 }
@@ -92,14 +98,33 @@ void		move_loaf(t_input *input, int from_to)
 */
 void		divide_loaf(t_sort_info *info, t_input *input, int from_to)
 {
+	int		i;
+
 	set_sort_info(info, input, from_to);
-	if (*(int *)info->orig.data->loaf->content > 3)
+	if (!info->orig.data->loaf || !info->orig.data->stack)
+		return ;
+	if (*(int *)info->orig.data->loaf)
+
+	if ((info->orig.name == 'a' && is_ascending(&input->a)) || \
+		(info->orig.name == 'b' && is_descending(&input->b)))
 	{
-		info->move.func(info, input);
-		if (from_to == B_TO_A)
-			rotate_loaf(&input->a);
+		if (info->orig.name == 'b')
+			move_loaf(input, B_TO_A);
+		i = *(int *)input->a.loaf->content;
+		while (--i >= 0)
+			st_add_last(&input->a.loaf, 1);
+		pop(&input->a.loaf);
 	}
-	else if (*(int *)info->orig.data->loaf->content <= 3)\
-		sort_directly(input, from_to);
+	if (info->orig.data->loaf)
+	{
+		if (*(int *)info->orig.data->loaf->content > 3)
+		{
+			info->move.func(info, input);
+		}
+		else if (*(int *)info->orig.data->loaf->content <= 3)
+			sort_directly(input, from_to);
+	}
+	print_stacks(input->a.stack, input->b.stack);
+	print_loaf(input);
 	return ;
 }

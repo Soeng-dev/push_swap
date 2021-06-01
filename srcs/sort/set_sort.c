@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:56:46 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/01 17:58:16 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/01 18:01:36 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,5 @@ void		set_sort_info(t_sort_info *info, t_input *input, int from_to)
 		info->move.count = count_rr;
 		info->move.func = move_by_rr;
 	}
-	printf("r : %d		rr : %d\n", count_r, count_rr);
 	return ;
 }
