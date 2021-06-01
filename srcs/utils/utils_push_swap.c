@@ -15,9 +15,11 @@ int		get_mid(t_data *data)
 	while (--i >= 0)
 	{
 		mini = min(*(int *)list->content, mini);
-		maxi = max(*(int *)list->content, mini);
+		maxi = max(*(int *)list->content, maxi);
 		list = list->next;
 	}
+	printf("min	%d\n", mini);
+	printf("max	%d\n", maxi);
 	return ((mini + maxi) / 2);
 }
 

@@ -6,11 +6,14 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:55:17 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/31 18:29:24 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/01 16:58:44 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/sort.h"
+
+
+#include <stdio.h>
 
 /*
 **		After sort2_to_a or sort3_to_a, sorted element is rotated,
@@ -63,13 +66,30 @@ void		sort(t_input *input)
 
 	while (is_divided(input->a.loaf) == FALSE)
 	{
+		//printf("1\n");
 		while (*(int *)input->a.loaf->content == 1)
+		{
+			//printf("2\n");
 			rotate_loaf(&input->a);
+			//printf("3\n");
+		}
 		divide_loaf(&info, input, A_TO_B);
+		print_stacks(input->a.stack, input->b.stack);
+		print_loaf(input->a.loaf);
+		//printf("4\n");
 		if (is_divided(input->b.loaf))
+		{
+			//printf("5\n");
 			move_loaf(input, B_TO_A);
+			//printf("6\n");
+		}
 		while (is_divided(input->b.loaf) == FALSE)
+		{
+			//printf("7\n");
 			divide_loaf(&info, input, B_TO_A);
+			//printf("8\n");
+		}
 	}
+	//printf("9\n");
 	return ;
 }

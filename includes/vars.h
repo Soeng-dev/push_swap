@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 19:09:22 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/28 19:49:40 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/01 15:34:46 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # define FALSE	0
 
 # include "libft/libft.h"
+
+#include <stdio.h>		//test
 
 struct	s_data
 {

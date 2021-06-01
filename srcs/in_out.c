@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 17:53:16 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/30 20:28:07 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/01 16:08:21 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,3 +108,13 @@ void	print_stacks(t_list *st_a, t_list *st_b)
 	return ;
 }
 
+void	print_loaf(t_list *loaf)
+{
+	printf("loaf\n");
+	while (loaf)
+	{
+		printf("%d\n", *(int *)loaf->content);
+		loaf = loaf->next;
+	}
+	printf("\n");
+}
