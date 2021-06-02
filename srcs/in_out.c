@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 17:53:16 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/01 22:08:18 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/02 16:12:03 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,15 @@ void	read_input(char **argv, t_list **st)
 	return ;
 }
 
-void	print_stacks(t_list *st_a, t_list *st_b)
+void	print_stacks(t_input *input)
 {
 	int		len_a;
 	int		len_b;
+	t_list	*st_a;
+	t_list	*st_b;
 
+	st_a = input->a.stack;
+	st_b = input->b.stack;
 	len_a = ft_lstsize(st_a);
 	len_b = ft_lstsize(st_b);
 	ft_putchar_fd('\n', 1);

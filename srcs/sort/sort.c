@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:55:17 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/01 22:39:04 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/02 19:22:43 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void		sort_directly(t_input *input, int from_to)
 		sort2_to_a(input, from_to);
 	else if (*(int *)tar_data->loaf->content == 3)
 		sort3_to_a(input, from_to);
+	else if (*(int *)tar_data->loaf->content == 1)
+		return (move_loaf(input, from_to));
 	else
 		return ;
 	i = *(int *)input->a.loaf->content;
@@ -69,9 +71,8 @@ void		sort(t_input *input)
 		while (*(int *)input->a.loaf->content == 1)
 			rotate_loaf('a', input);
 		divide_loaf(&info, input, A_TO_B);
-		if (is_divided(input->b.loaf))
-			move_loaf(input, B_TO_A);
-		divide_loaf(&info, input, B_TO_A);
+		if (input->b.loaf)
+			divide_loaf(&info, input, B_TO_A);
 		while (is_divided(input->b.loaf) == FALSE)
 		{
 			rotate_loaf('a', input);

@@ -64,6 +64,10 @@ int		is_descending(t_data *data)
 	t_list	*front;
 	t_list	*back;
 
+	if (!data)
+		return (TRUE);
+	if (!data->loaf || !data->stack)
+		return (TRUE);
 	i = *(int *)data->loaf->content;
 	front = data->stack;
 	while (--i >= 0)
@@ -78,4 +82,15 @@ int		is_descending(t_data *data)
 		front = front->next;
 	}
 	return (TRUE);
+}
+
+int		is_sorted(t_input *input)
+{
+	t_list	*front;
+	t_list	*back;
+
+	if (input->b.stack || input->b.loaf || is_divided(input->a.loaf) == FALSE)
+		return (FALSE);
+	front = input->a.stack;
+	
 }
