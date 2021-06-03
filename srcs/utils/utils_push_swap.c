@@ -92,5 +92,16 @@ int		is_sorted(t_input *input)
 	if (input->b.stack || input->b.loaf || is_divided(input->a.loaf) == FALSE)
 		return (FALSE);
 	front = input->a.stack;
-	
+	while (front)
+	{
+		back = front->next;
+		while (back)
+		{
+			if (*(int *)front->content < *(int *)back->content)
+				return (FALSE);
+			back = back->next;
+		}
+		front = front->next;
+	}
+	return (TRUE);		
 }

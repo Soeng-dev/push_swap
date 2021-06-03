@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:55:17 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/02 20:15:28 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/03 14:46:51 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,35 +105,7 @@ void		move_loaf(t_input *input, int from_to)
 	st_add(&move.dest.data->loaf, i);
 }
 
-/*
-** 		divide_loaf divide one loaf to two loafes if loaf bigger than 3, 
-**		other wise in size-one-loafes.
-*/
 void		divide_loaf(t_sort_info *info, t_input *input, int from_to)
 {
-	int		i;
-
-	set_sort_info(info, input, from_to);
-	if (!info->orig.data->loaf || !info->orig.data->stack)
-		return ;
-	if ((info->orig.name == 'a' && is_ascending(&input->a)) || \
-		(info->orig.name == 'b' && is_descending(&input->b)))
-	{
-		if (info->orig.name == 'b')
-			move_loaf(input, B_TO_A);
-		i = *(int *)input->a.loaf->content;
-		cmd_repeat(cmd_r, input, 'a', i);
-		while (--i >= 0)
-			st_add_last(&input->a.loaf, 1);
-		pop(&input->a.loaf);
-	}
-	else if (*(int *)info->orig.data->loaf->content > 3)
-	{
-		info->move.func(info, input);
-	}
-	else if (*(int *)info->orig.data->loaf->content <= 3)
-		sort_directly(input, from_to);
-	printf("after df\n");
-	print_stacks(input);	print_loaf(input);
-	return ;
+	
 }

@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:55:17 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/02 19:22:43 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/03 14:46:56 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,21 +63,3 @@ void		sort_directly(t_input *input, int from_to)
 }
 
 void		sort(t_input *input)
-{
-	t_sort_info		info;
-
-	while (is_divided(input->a.loaf) == FALSE)
-	{
-		while (*(int *)input->a.loaf->content == 1)
-			rotate_loaf('a', input);
-		divide_loaf(&info, input, A_TO_B);
-		if (input->b.loaf)
-			divide_loaf(&info, input, B_TO_A);
-		while (is_divided(input->b.loaf) == FALSE)
-		{
-			rotate_loaf('a', input);
-			divide_loaf(&info, input, B_TO_A);
-		}
-	}
-	return ;
-}
