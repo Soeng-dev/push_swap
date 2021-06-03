@@ -6,24 +6,23 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:55:17 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/03 14:46:51 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/03 16:46:33 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/sort.h"
 
-
-# include <stdio.h>
-
 void		move_by_r(void *sort_info, t_input *input)
 {
 	int			i;
 	int			moved;
+	int			unmoved;
 	t_sort_info	*info;
 
 	info = (t_sort_info *)sort_info;
 	i = info->move.count;
 	moved = 0;
+	unmoved = *(int *)info->orig.data->loaf->content;
 	while (--i >= 0)
 	{
 		if (info->move.rule												\
@@ -32,12 +31,12 @@ void		move_by_r(void *sort_info, t_input *input)
 		{
 			cmd_p(info->dest.name, &input->a.stack, &input->b.stack);
 			++moved;
+			--unmoved;
 		}
 		else
 			cmd_r(info->orig.name, &input->a.stack, &input->b.stack);
 	}
-	*(int *)info->orig.data->loaf->content								\
-	= ft_lstsize(info->orig.data->stack);
+	*(int *)info->orig.data->loaf->content = unmoved;
 	st_add(&info->dest.data->loaf, moved);
 	return ;
 }
@@ -46,11 +45,13 @@ void		move_by_rr(void *sort_info, t_input *input)
 {
 	int			i;
 	int			moved;
+	int			unmoved;
 	t_sort_info	*info;
 
 	info = (t_sort_info *)sort_info;
 	i = info->move.count;
 	moved = 0;
+	unmoved = *(int *)info->orig.data->loaf->content;
 	while (--i >= 0)
 	{
 		cmd_rr(info->orig.name, &input->a.stack, &input->b.stack);
@@ -60,10 +61,10 @@ void		move_by_rr(void *sort_info, t_input *input)
 		{
 			cmd_p(info->dest.name, &input->a.stack, &input->b.stack);
 			++moved;
+			--unmoved;
 		}
 	}
-	*(int *)info->orig.data->loaf->content								\
-	= ft_lstsize(info->orig.data->stack);
+	*(int *)info->orig.data->loaf->content = unmoved;
 	st_add(&info->dest.data->loaf, moved);
 	return ;
 }
@@ -105,7 +106,15 @@ void		move_loaf(t_input *input, int from_to)
 	st_add(&move.dest.data->loaf, i);
 }
 
-void		divide_loaf(t_sort_info *info, t_input *input, int from_to)
+void		divide_move(t_sort_info *info, t_input *input, int from_to)
 {
-	
+	set_sort_info(info, input, from_to);
+
+	if (from_to == B_TO_A &&
+		(*(int *)input->b.loaf->content == 2 || *(int *)input->b.loaf->content == 3))
+	{
+		sort_directly(input, B_TO_A);
+		return ;
+	}
+	info->move.func(info, input);
 }

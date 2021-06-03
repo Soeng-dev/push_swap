@@ -23,7 +23,7 @@ void	move_by_r(void *sort_info, t_input *input);
 void	move_by_rr(void *sort_info, t_input *input);
 void	rotate_loaf(char target, t_input *input);
 void	move_loaf(t_input *input, int from_to);
-void	divide_loaf(t_sort_info *info, t_input *input, int from_to);
+void	divide_move(t_sort_info *info, t_input *input, int from_to);
 
 /*
 **		sort

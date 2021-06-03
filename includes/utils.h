@@ -21,8 +21,8 @@ int		is_smaller(int target, int pivot);
 */
 int		get_mid(t_data *data);
 int		is_divided(t_list *loaf);
-int		is_ascending(t_data *data);
-int		is_descending(t_data *data);
+int		loaf_is_ascending(t_data *data);
+int		loaf_is_descending(t_data *data);
 int		is_sorted(t_input *input);
 
 #endif

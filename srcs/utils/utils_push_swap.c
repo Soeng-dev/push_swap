@@ -32,7 +32,7 @@ int		is_divided(t_list *loaf)
 	return (TRUE);
 }
 
-int		is_ascending(t_data *data)
+int		loaf_is_ascending(t_data *data)
 {
 	int		i;
 	t_list	*front;
@@ -58,7 +58,7 @@ int		is_ascending(t_data *data)
 	return (TRUE);
 }
 
-int		is_descending(t_data *data)
+int		loaf_is_descending(t_data *data)
 {
 	int		i;
 	t_list	*front;

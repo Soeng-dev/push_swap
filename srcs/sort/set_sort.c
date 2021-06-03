@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:56:46 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/01 18:01:36 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/03 15:17:10 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void		set_sort_info(t_sort_info *info, t_input *input, int from_to)
 	count_rr = 0;
 	ft_memset(info, 0, sizeof(t_sort_info));
 	set_target(info, input, from_to);
-	info->pivot = get_mid(info->orig.data);
+	info->pivot = get_mid(info->orig.data) + 1;
 	info->move.rule = is_smaller;
 	count_rotate(info, &count_r);
 	count_revrot(info, &count_rr);
