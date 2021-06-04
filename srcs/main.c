@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 15:02:46 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/04 18:26:05 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/04 20:47:49 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int		main(int argc, char *argv[])
 	print_loaf(&input);
 
 	
-//	sort(&input);
-//	print_stacks(&input);
-//	print_loaf(&input);
+	sort(&input);
+	print_stacks(&input);
+	print_loaf(&input);
 
 
 //	read_input(argv + 1, &input.b.stack);
@@ -46,9 +46,6 @@ int		main(int argc, char *argv[])
 //	print_loaf(&input);
 
 
-	int		fd = open("./log", O_RDWR | O_CREAT);
-	--fd;
-	++fd;
 	char	c;
 	while (scanf("%c", &c))
 	{
@@ -58,7 +55,6 @@ int		main(int argc, char *argv[])
 		print_stacks(&input);
 		print_loaf(&input);
 	}
-
 
 
 
