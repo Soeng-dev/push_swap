@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:55:17 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/03 16:26:35 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/04 18:35:55 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void		sort_directly(t_input *input, int from_to)
 		tar_data = &(input->a);
 	else
 		tar_data = &(input->b);
+	if (!tar_data->loaf || !tar_data->stack)
+		return ;
 	if (*(int *)tar_data->loaf->content == 2)
 		sort2_to_a(input, from_to);
 	else if (*(int *)tar_data->loaf->content == 3)
@@ -66,22 +68,28 @@ void		sort(t_input *input)
 
 	while (is_sorted(input) == FALSE)
 	{
-		if (*(int *)input->a.loaf == 2 || *(int *)input->a.loaf == 3)
+		if (*(int *)input->a.loaf->content == 2 || 
+			*(int *)input->a.loaf->content == 3)
 			sort_directly(input, A_TO_B);
 		else
+		{
 			divide_move(&info, input, A_TO_B);
-		while (input->b.loaf)
-		{
-			divide_move(&info, input, B_TO_A);
-			if (is_sorted(input))
-				break;
-			rotate_loaf('a', input);
-		}
-		if (is_divided(input->a.loaf) && !input->b.loaf)
-		{
-			while (is_sorted(input) == FALSE)
+			while (input->b.loaf)
+			{
+				divide_move(&info, input, B_TO_A);
+				if (is_sorted(input))
+					break;
 				rotate_loaf('a', input);
+			}
+			if (is_divided(input->a.loaf) && !input->b.loaf)
+			{
+				while (is_sorted(input) == FALSE)
+				{
+//					int i;
+//					scanf("%d\n", &i);
+					rotate_loaf('a', input);
+				}
+			}
 		}
 	}
-	return ;
 }

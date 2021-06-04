@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:55:17 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/03 16:46:33 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/04 18:32:58 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,12 @@ void		move_by_r(void *sort_info, t_input *input)
 		else
 			cmd_r(info->orig.name, &input->a.stack, &input->b.stack);
 	}
-	*(int *)info->orig.data->loaf->content = unmoved;
-	st_add(&info->dest.data->loaf, moved);
+	if (unmoved == 0)
+		pop(&info->orig.data->loaf);
+	else
+		*(int *)info->orig.data->loaf->content = unmoved;
+	if (moved)
+		st_add(&info->dest.data->loaf, moved);
 	return ;
 }
 
@@ -64,8 +68,12 @@ void		move_by_rr(void *sort_info, t_input *input)
 			--unmoved;
 		}
 	}
-	*(int *)info->orig.data->loaf->content = unmoved;
-	st_add(&info->dest.data->loaf, moved);
+	if (unmoved == 0)
+		pop(&info->orig.data->loaf);
+	else
+		*(int *)info->orig.data->loaf->content = unmoved;
+	if (moved)
+		st_add(&info->dest.data->loaf, moved);
 	return ;
 }
 
@@ -84,8 +92,8 @@ void		rotate_loaf(char target, t_input *input)
 		rotate(&input->a.loaf, ROT_FORWARD);
 	else if (target == 'b')
 		rotate(&input->b.loaf, ROT_FORWARD);
-	printf("after rf\n");
-	print_stacks(input);		print_loaf(input);
+//	printf("after rf\n");
+//	print_stacks(input);		print_loaf(input);
 	return ;
 }
 
@@ -111,10 +119,9 @@ void		divide_move(t_sort_info *info, t_input *input, int from_to)
 	set_sort_info(info, input, from_to);
 
 	if (from_to == B_TO_A &&
-		(*(int *)input->b.loaf->content == 2 || *(int *)input->b.loaf->content == 3))
-	{
+		(*(int *)input->b.loaf->content == 2 || 
+		*(int *)input->b.loaf->content == 3))
 		sort_directly(input, B_TO_A);
-		return ;
-	}
-	info->move.func(info, input);
+	else
+		info->move.func(info, input);
 }

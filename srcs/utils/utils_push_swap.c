@@ -35,6 +35,7 @@ int		is_divided(t_list *loaf)
 int		loaf_is_ascending(t_data *data)
 {
 	int		i;
+	int		j;
 	t_list	*front;
 	t_list	*back;
 
@@ -44,10 +45,11 @@ int		loaf_is_ascending(t_data *data)
 		return (TRUE);
 	i = *(int *)data->loaf->content;
 	front = data->stack;
-	while (--i >= 0)
+	while (--i >= 1)
 	{
 		back = front->next;
-		while (back)
+		j = i;
+		while (back && --j >= 0)
 		{
 			if (*(int *)front->content > *(int *)back->content)
 				return (FALSE);
@@ -61,6 +63,7 @@ int		loaf_is_ascending(t_data *data)
 int		loaf_is_descending(t_data *data)
 {
 	int		i;
+	int		j;
 	t_list	*front;
 	t_list	*back;
 
@@ -70,10 +73,11 @@ int		loaf_is_descending(t_data *data)
 		return (TRUE);
 	i = *(int *)data->loaf->content;
 	front = data->stack;
-	while (--i >= 0)
+	while (--i >= 1)
 	{
+		j = i;
 		back = front->next;
-		while (back)
+		while (back && --j >= 0)
 		{
 			if (*(int *)front->content < *(int *)back->content)
 				return (FALSE);
@@ -97,7 +101,7 @@ int		is_sorted(t_input *input)
 		back = front->next;
 		while (back)
 		{
-			if (*(int *)front->content < *(int *)back->content)
+			if (*(int *)front->content > *(int *)back->content)
 				return (FALSE);
 			back = back->next;
 		}

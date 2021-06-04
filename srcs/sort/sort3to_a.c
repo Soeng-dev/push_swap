@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 18:22:50 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/31 17:01:12 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/04 17:32:14 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static int	sort3_a_1(int first, int second, int third, t_input *input)
 	}
 	else
 		return (0);
+
+//	printf("1\n");
 	return (1);
 }
 
@@ -61,6 +63,7 @@ static int	sort3_a_2(int first, int second, int third, t_input *input)
 	}
 	else
 		return (0);
+//	printf("2\n");
 	return (1);
 }
 //
@@ -92,6 +95,8 @@ void		sort3_to_a(t_input *input, int from_to)
 	{}
 	else
 		sort3_a_2(first, second, third, input);
+
+//	scanf("%d\n", &first);
 
 //	if (from_to == A_TO_B)
 //	{
