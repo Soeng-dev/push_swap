@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:55:17 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/04 21:58:17 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/05 17:06:38 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,33 +66,37 @@ void		sort(t_input *input)
 {
 	t_sort_info		info;
 
-	while (is_sorted(input) == FALSE)
+//	while (is_divided(input->a.loaf) == FALSE)   // (is_sorted(input) == FALSE)
 	{
-//		if (*(int *)input->a.loaf->content == 2 || 
-//			*(int *)input->a.loaf->content == 3)
-//			sort_directly(input, A_TO_B);
-		//else
+		if (*(int *)input->a.loaf->content == 2 || 
+			*(int *)input->a.loaf->content == 3)
+			sort_directly(input, A_TO_B);
+		else
 		{
 			//check if matters after sort_directly ATOB rotate_loaf
 			divide_move(&info, input, A_TO_B);
 			while (input->b.loaf)
 			{
-				divide_move(&info, input, B_TO_A);
-				if (is_sorted(input))
-					return ;
-				rotate_loaf('a', input);
+				if (*(int *)input->b.loaf->content == 2 || 
+					*(int *)input->b.loaf->content == 3)
+					sort_directly(input, B_TO_A);
+				else
+				{
+					divide_move(&info, input, B_TO_A);
+					rotate_loaf('a', input);
+				}
 			}
 			if (is_divided(input->a.loaf) && !input->b.loaf)
 			{
 				while (is_sorted(input) == FALSE)
 				{
+					rotate_loaf('a', input);
 //					print_stacks(input);	print_loaf(input);
 //					char	c;
 //					scanf("%c\n", &c);
-					rotate_loaf('a', input);
 				}
 			}
-}
-		print_stacks(input);	print_loaf(input);
+		}
+		//print_stacks(input);	print_loaf(input);
 	}
 }
