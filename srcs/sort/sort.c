@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:55:17 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/05 17:06:38 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/05 20:02:46 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void		sort(t_input *input)
 {
 	t_sort_info		info;
 
-//	while (is_divided(input->a.loaf) == FALSE)   // (is_sorted(input) == FALSE)
+	while (is_sorted(input) == FALSE)    //(is_divided(input->a.loaf) == FALSE)
 	{
 		if (*(int *)input->a.loaf->content == 2 || 
 			*(int *)input->a.loaf->content == 3)

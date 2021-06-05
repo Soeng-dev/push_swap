@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:56:46 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/05 18:26:38 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/05 20:06:04 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 static void	count_rotate(t_sort_info *info, int *count_r)
 {
-	int		i;
-	int		count;
-	t_list	*target;
+	//int		i;
+//	int		count;
+//	t_list	*target;
 
-	i = *(int *)info->orig.data->loaf->content;
-	target = info->orig.data->stack;
-	count = 0;
-	while (--i >= 0)
-	{
-		++count;
-		if (info->move.rule									\
-			(*(int *)target->content, info->pivot) == TRUE)
-			*count_r = count;
-		target = target->next;
-	}
+	*count_r = *(int *)info->orig.data->loaf->content;
+//	target = info->orig.data->stack;
+//	count = 0;
+//	while (--i >= 0)
+//	{
+//		++count;
+//		if (info->move.rule									\
+//			(*(int *)target->content, info->pivot) == TRUE)
+//			*count_r = count;
+//		target = target->next;
+//	}
 	return ;
 }
 
@@ -90,7 +90,7 @@ void		set_sort_info(t_sort_info *info, t_input *input, int from_to)
 	set_target(info, input, from_to);
 	info->pivot = get_mid(info->orig.data) + 1;
 
-	printf("\n\npivot %d\n", info->pivot);
+	//printf("\n\npivot %d\n", info->pivot);
 
 	if (from_to == A_TO_B)
 		info->move.rule = is_bigger;
@@ -98,15 +98,15 @@ void		set_sort_info(t_sort_info *info, t_input *input, int from_to)
 		info->move.rule = is_smaller;
 	count_rotate(info, &count_r);
 	count_revrot(info, &count_rr);
-	if (count_r <= count_rr)
-	{
+//	if (count_r <= count_rr)
+//	{
 		info->move.count = count_r;
 		info->move.func = move_by_r;
-	}
-	else
-	{
-		info->move.count = count_rr;
-		info->move.func = move_by_rr;
-	}
+//	}
+//	else
+//	{
+//		info->move.count = count_rr;
+//		info->move.func = move_by_rr;
+//	}
 	return ;
 }

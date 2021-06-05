@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 15:02:46 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/05 17:06:00 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/05 20:05:44 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int		main(int argc, char *argv[])
 	ft_memset(&input, 0, sizeof(t_input));
 	read_input(argv + 1, &input.a.stack);
 	st_add(&input.a.loaf, argc - 1);
-	print_stacks(&input);
-	print_loaf(&input);
+//	print_stacks(&input);
+//	print_loaf(&input);
 
 	
-//	sort(&input);
+	sort(&input);
 //	print_stacks(&input);
 //	print_loaf(&input);
 
@@ -46,15 +46,15 @@ int		main(int argc, char *argv[])
 //	print_loaf(&input);
 
 
-	char	c;
-	while (scanf("%c", &c))
-	{
-		if (c == 'q')
-			break;
-		sort(&input);
-		print_stacks(&input);
-		print_loaf(&input);
-	}
+//	char	c;
+//	while (scanf("%c", &c))
+//	{
+//		if (c == 'q')
+//			break;
+//		sort(&input);
+//		print_stacks(&input);
+//		print_loaf(&input);
+//	}
 
 
 
