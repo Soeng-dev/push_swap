@@ -2,12 +2,11 @@
 rm case_tested;
 
 
-
-for ((i = 0; i < $1 ; i++))
+for ((i = 0; i < $2 ; i++))
 do
 	echo ""
 	echo "$i test"
-	ARG=$(./random_numbers 500 1 10000)
+	ARG=$(./random_numbers $1 1 10000)
 	echo $ARG >> case_tested
 	#echo $ARG
 	echo "result"

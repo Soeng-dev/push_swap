@@ -93,6 +93,9 @@ int		is_sorted(t_input *input)
 	t_list	*front;
 	t_list	*back;
 
+	if (ft_lstsize(input->a.loaf) == 1 && loaf_is_ascending(&input->a) &&		\
+		ft_lstsize(input->b.loaf) == 0)
+		return (TRUE);
 	if (input->b.stack || input->b.loaf || is_divided(input->a.loaf) == FALSE)
 		return (FALSE);
 	front = input->a.stack;

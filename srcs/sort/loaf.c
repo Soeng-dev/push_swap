@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:55:17 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/05 20:26:51 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/07 17:42:42 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void		move_by_rule(void *sort_info, t_input *input)
 	}
 	if (moved)
 		st_add(&info->dest.data->loaf, moved);
-//	printf("move by r done\n");
 	return ;
 }
 
@@ -64,8 +63,6 @@ void		rotate_loaf(char target, t_input *input)
 		rotate(&input->a.loaf, ROT_FORWARD);
 	else if (target == 'b')
 		rotate(&input->b.loaf, ROT_FORWARD);
-//	printf("\n\nafter rf\n");
-//	print_stacks(input);		print_loaf(input);
 	return ;
 }
 
@@ -86,15 +83,9 @@ void		move_loaf(t_input *input, int from_to)
 	st_add(&move.dest.data->loaf, i);
 }
 
-//divided loaf is moved to bottom of dest loaf when from A to B
 void		divide_move(t_sort_info *info, t_input *input, int from_to)
 {
 	set_sort_info(info, input, from_to);
 	info->move.func(info, input);
-
-//	printf("\n\ndivide pivot : %d\n", info->pivot);
-//	print_stacks(input);
-//	print_loaf(input);
-
 	return ;
 }

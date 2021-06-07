@@ -6,23 +6,16 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:55:17 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/05 20:02:46 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/07 19:45:17 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/sort.h"
 
-
-#include <stdio.h>
-
-/*
-**		After sort2_to_a or sort3_to_a, sorted element is rotated,
-**		and input->loaf is not divided and rotated, 
-**		which is dealed at sort_directly.
-*/
-
 static void	sort2_to_a(t_input *input, int from_to)
 {
+	int		i;
+
 	if (from_to == A_TO_B && loaf_is_ascending(&input->a) == FALSE)
 		cmd_s('a', &input->a.stack, &input->b.stack);
 	else if (from_to == B_TO_A)
@@ -32,12 +25,18 @@ static void	sort2_to_a(t_input *input, int from_to)
 		move_loaf(input, B_TO_A);
 	}
 	cmd_repeat(cmd_r, input, 'a', 2);
+	i = *(int *)input->a.loaf->content;
+	pop(&input->a.loaf);
+	while (--i >= 0)
+	{
+		st_add(&input->a.loaf, 1);
+		rotate(&input->a.loaf, ROT_FORWARD);
+	}
 	return ;
 }
 
 void		sort_directly(t_input *input, int from_to)
 {
-	int		i;
 	t_data	*tar_data;
 
 	if (from_to == A_TO_B)
@@ -50,15 +49,6 @@ void		sort_directly(t_input *input, int from_to)
 		sort2_to_a(input, from_to);
 	else if (*(int *)tar_data->loaf->content == 3)
 		sort3_to_a(input, from_to);
-	else
-		return ;
-	i = *(int *)input->a.loaf->content;
-	pop(&input->a.loaf);
-	while (--i >= 0)
-	{
-		st_add(&input->a.loaf, 1);
-		rotate(&input->a.loaf, ROT_FORWARD);
-	}
 	return ;
 }
 
@@ -66,14 +56,13 @@ void		sort(t_input *input)
 {
 	t_sort_info		info;
 
-	while (is_sorted(input) == FALSE)    //(is_divided(input->a.loaf) == FALSE)
+	while (is_sorted(input) == FALSE)
 	{
 		if (*(int *)input->a.loaf->content == 2 || 
 			*(int *)input->a.loaf->content == 3)
 			sort_directly(input, A_TO_B);
 		else
 		{
-			//check if matters after sort_directly ATOB rotate_loaf
 			divide_move(&info, input, A_TO_B);
 			while (input->b.loaf)
 			{
@@ -86,17 +75,35 @@ void		sort(t_input *input)
 					rotate_loaf('a', input);
 				}
 			}
+			//optimization of end process
 			if (is_divided(input->a.loaf) && !input->b.loaf)
 			{
-				while (is_sorted(input) == FALSE)
+				int i = 1;
+				int	pos;
+				int	val = INT_MAX;
+
+				t_list *list = input->a.stack;
+				while (list)
 				{
-					rotate_loaf('a', input);
-//					print_stacks(input);	print_loaf(input);
-//					char	c;
-//					scanf("%c\n", &c);
+					if (*(int *)list->content < val)
+					{
+						pos = i;
+						val = *(int *)list->content;
+					}
+					++i;
+					list = list->next;
+				}
+				if (pos < ft_lstsize(input->a.stack) / 2)
+				{
+					while (is_sorted(input) == FALSE)
+						cmd_r('a', &input->a.stack, &input->b.stack);
+				}
+				else
+				{
+					while (is_sorted(input) == FALSE)
+						cmd_rr('a', &input->a.stack, &input->b.stack);
 				}
 			}
 		}
-		//print_stacks(input);	print_loaf(input);
 	}
 }
