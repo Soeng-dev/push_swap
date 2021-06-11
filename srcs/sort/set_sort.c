@@ -6,11 +6,31 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:56:46 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/07 20:40:43 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/11 23:26:53 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/sort.h"
+
+static int	count_mincmd(t_sort_info *info)
+{
+	int		i;
+	int		count;
+	t_list	*tar_st;
+
+	count = 0;
+	i = 0;
+	tar_st = info->orig.data->stack;
+	while (tar_st)
+	{
+		++i;
+		if (info->move.rule									\
+			(*(int *)tar_st->content, info->pivot) == TRUE)
+			count = i;
+		tar_st = tar_st->next;
+	}
+	return (count);
+}
 
 void		set_target(t_sort_info *info, t_input *input, int from_to)
 {
@@ -31,38 +51,25 @@ void		set_target(t_sort_info *info, t_input *input, int from_to)
 	return ;
 }
 
-void		set_move(t_sort_info *info, t_input *input, int from_to)
-{
-	t_list	*st_b;
-	int		count;
-
-	if (from_to == A_TO_B)
-	{
-		info->move.rule = is_bigger;
-		info->move.count = *(int *)info->orig.data->loaf->content;
-	}
-	else if (from_to == B_TO_A)
-	{
-		info->move.rule = is_smaller;
-		count = 0;
-		st_b = input->b.stack;
-		while (st_b)
-		{
-			count++;
-			if (info->move.rule(info->pivot, *(int*)st_b->content) == TRUE)
-				info->move.count = count;
-			st_b = st_b->next;
-		}
-	}
-	info->move.func = move_by_rule;
-	return ;
-}
-
 void		set_sort_info(t_sort_info *info, t_input *input, int from_to)
 {
 	ft_memset(info, 0, sizeof(t_sort_info));
 	set_target(info, input, from_to);
 	info->pivot = get_mid(info->orig.data) + 1;
-	set_move(info, input, from_to);
+	if (from_to == A_TO_B)
+	{
+		info->move.rule = is_bigger;
+		if (ft_lstsize(input->a.loaf) == 1)
+			info->move.count = count_mincmd(info);
+		else
+			info->move.count = *(int *)info->orig.data->loaf->content;
+
+	}
+	else if (from_to == B_TO_A)
+	{
+		info->move.rule = is_smaller;
+		info->move.count = count_mincmd(info);
+	}
+	info->move.func = move_by_rule;
 	return ;
 }
