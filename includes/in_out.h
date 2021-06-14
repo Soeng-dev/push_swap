@@ -5,8 +5,6 @@
 # define TRUE	1
 # define FALSE	0
 
-# include <limits.h>
-
 # include "libft/libft.h"
 # include "stack.h"
 # include "utils.h"

@@ -2,9 +2,7 @@
 rm case_tested;
 rm overflow;
 
-echo total number of case : $2 >> overflow
 echo criterion of overflow : $3 >> overflow
-
 
 for ((i = 1; i <= $2 ; i++))
 do
@@ -31,7 +29,10 @@ do
 		echo result : $NUM >> overflow
 	fi
 
-
 	./push_swap $ARG | ./checker_Mac $ARG
 done
+
+OVFLOW=$(cat overflow | grep test | wc -l)
+echo "total			$2" >> overflow
+echo "overflow	$OVFLOW" >> overflow
 

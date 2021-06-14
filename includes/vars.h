@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 19:09:22 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/05 20:30:54 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/14 19:50:54 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define TRUE	1
 # define FALSE	0
 
+# include <limits.h>
 # include "libft/libft.h"
 
 #include <stdio.h>		//test
@@ -60,4 +61,5 @@ struct s_sort_info
 };
 typedef struct s_sort_info	t_sort_info;
 
+typedef void (*t_cmd)(char, t_list **, t_list **);
 #endif

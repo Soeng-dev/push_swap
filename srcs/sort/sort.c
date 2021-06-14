@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:55:17 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/11 23:28:55 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/14 19:48:32 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,33 @@ void		sort(t_input *input)
 			}
 			if (is_divided(input->a.loaf) && !input->b.loaf)
 			{
+				int		i;
+				int		mark;
+				int		smallest;
+				t_cmd	sort_cmd;
+				t_list	*st;
+
+				smallest = INT_MAX;
+				i = 0;
+				st = input->a.stack;
+				while (st)
+				{
+					++i;
+					if (*(int *)st->content < smallest)
+					{
+						mark = i;
+						smallest = *(int *)st->content;
+					}
+					st = st->next;
+				}
+				if (mark < ft_lstsize(input->a.stack) / 2)
+					sort_cmd = cmd_r;
+				else
+					sort_cmd = cmd_rr;
 				while (is_sorted(input) == FALSE)
 				{
-					rotate_loaf('a', input);
+					sort_cmd('a', &input->a.stack, &input->b.stack);
+				//	rotate_loaf('a', input);
 //					print_stacks(input);	print_loaf(input);
 //					char c;
 //					scanf("%c", &c);
