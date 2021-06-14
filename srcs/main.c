@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 15:02:46 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/11 23:29:27 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/14 23:24:53 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		main(int argc, char *argv[])
 //		print_stacks(&input);
 //		print_loaf(&input);
 //	}
-//
+
 
 
 //	t_sort_info		info;

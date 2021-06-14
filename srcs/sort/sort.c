@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:55:17 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/14 19:48:32 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/14 23:24:32 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,45 @@ void		sort(t_input *input)
 {
 	t_sort_info		info;
 
+				//	char c;//test
 	while (is_sorted(input) == FALSE)
 	{
 		if (*(int *)input->a.loaf->content == 2 || 
 			*(int *)input->a.loaf->content == 3)
 			sort_directly(input, A_TO_B);
+		//optimization of ending sort
+		else if (is_divided(input->a.loaf) && !input->b.loaf)
+		{
+			int		i;
+			int		mark;
+			int		smallest;
+			t_cmd	sort_cmd;
+			t_list	*st;
+
+			smallest = INT_MAX;
+			i = 0;
+			st = input->a.stack;
+			while (st)
+			{
+				++i;
+				if (*(int *)st->content < smallest)
+				{
+					mark = i;
+					smallest = *(int *)st->content;
+				}
+				st = st->next;
+			}
+			if (mark < ft_lstsize(input->a.stack) / 2)
+				sort_cmd = cmd_r;
+			else
+				sort_cmd = cmd_rr;
+			while (is_sorted(input) == FALSE)
+			{
+				sort_cmd('a', &input->a.stack, &input->b.stack);
+//				print_stacks(input);	print_loaf(input);
+//				scanf("%c", &c);
+			}
+		}
 		else
 		{
 			divide_move(&info, input, A_TO_B);
@@ -75,41 +109,11 @@ void		sort(t_input *input)
 				{
 					divide_move(&info, input, B_TO_A);
 					rotate_loaf('a', input);
-				}
-			}
-			if (is_divided(input->a.loaf) && !input->b.loaf)
-			{
-				int		i;
-				int		mark;
-				int		smallest;
-				t_cmd	sort_cmd;
-				t_list	*st;
 
-				smallest = INT_MAX;
-				i = 0;
-				st = input->a.stack;
-				while (st)
-				{
-					++i;
-					if (*(int *)st->content < smallest)
-					{
-						mark = i;
-						smallest = *(int *)st->content;
-					}
-					st = st->next;
 				}
-				if (mark < ft_lstsize(input->a.stack) / 2)
-					sort_cmd = cmd_r;
-				else
-					sort_cmd = cmd_rr;
-				while (is_sorted(input) == FALSE)
-				{
-					sort_cmd('a', &input->a.stack, &input->b.stack);
-				//	rotate_loaf('a', input);
+
 //					print_stacks(input);	print_loaf(input);
-//					char c;
 //					scanf("%c", &c);
-				}
 			}
 		}
 	}

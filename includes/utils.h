@@ -19,7 +19,7 @@ int		is_smaller(int target, int pivot);
 /*
 **		push_swap
 */
-int		get_mid(t_data *data);
+int		get_pivot(t_data *data);
 int		is_divided(t_list *loaf);
 int		loaf_is_ascending(t_data *data);
 int		loaf_is_descending(t_data *data);

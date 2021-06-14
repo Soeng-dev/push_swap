@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 19:09:22 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/14 19:50:54 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/14 22:00:22 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@
 #include <stdio.h>		//test
 #include <fcntl.h>
 #include <unistd.h>
+
+struct	s_int_arr
+{
+	int		size;
+	int		*data;
+};
+typedef struct s_int_arr	t_int_arr;
 
 struct	s_data
 {

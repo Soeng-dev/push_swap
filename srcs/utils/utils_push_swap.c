@@ -1,27 +1,88 @@
 
 #include "../../includes/utils.h"
 
-int		get_mid(t_data *data)
+t_int_arr	lst_to_int_arr(t_list *src)
 {
-	int		mini;
-	int		maxi;
-	int		i;
-	t_list	*list;
+	t_int_arr	int_arr;
+	int			*curr;
 
-	i = *(int *)data->loaf->content;
-	list = data->stack;
-	mini = INT_MAX;
-	maxi = INT_MIN;
-	while (--i >= 0)
+	int_arr.size = ft_lstsize(src);
+	int_arr.data = (int *)malloc(int_arr.size * sizeof(int));
+	curr = int_arr.data;
+	while (src)
 	{
-		mini = min(*(int *)list->content, mini);
-		maxi = max(*(int *)list->content, maxi);
-		list = list->next;
+		*curr = *(int *)src->content;
+		src = src->next;
+		++curr;
 	}
-	return ((mini + maxi) / 2);
+	return (int_arr);
 }
 
-int		is_divided(t_list *loaf)
+void		sort_asc(t_int_arr *int_arr)
+{
+	int		*front;
+	int		*back;
+	int		smaller;
+
+	front = int_arr->data;
+	while (front < int_arr->data + int_arr->size - 1)
+	{
+		back = front + 1;
+		while (back < int_arr->data + int_arr->size)
+		{
+			if (*back < *front)
+			{
+				smaller = *back;
+				*back = *front;
+				*front = smaller;
+			}
+			++back;
+		}
+		++front;
+	}
+	return ;
+}
+
+int			get_pivot(t_data *data)
+{
+	t_int_arr	int_arr;
+	int			pivot;
+
+	if (*(int *)data->loaf->content == 1)
+		return (*(int *)data->stack->content);
+	int_arr = lst_to_int_arr(data->stack);
+	int_arr.size = *(int *)data->loaf->content;
+	sort_asc(&int_arr);
+	pivot = int_arr.data[int_arr.size / 2];
+	pivot = (pivot + int_arr.data[int_arr.size / 2 - 1]) / 2;
+	free(int_arr.data);
+	int_arr.data = NULL;
+
+//	printf("pivot %d\n", pivot);
+	return (pivot);
+}
+
+//int		get_mid(t_data *data)
+//{
+//	int		mini;
+//	int		maxi;
+//	int		i;
+//	t_list	*list;
+//
+//	i = *(int *)data->loaf->content;
+//	list = data->stack;
+//	mini = INT_MAX;
+//	maxi = INT_MIN;
+//	while (--i >= 0)
+//	{
+//		mini = min(*(int *)list->content, mini);
+//		maxi = max(*(int *)list->content, maxi);
+//		list = list->next;
+//	}
+//	return ((mini + maxi) / 2);
+//}
+
+int			is_divided(t_list *loaf)
 {
 	while (loaf)
 	{
@@ -32,7 +93,7 @@ int		is_divided(t_list *loaf)
 	return (TRUE);
 }
 
-int		loaf_is_ascending(t_data *data)
+int			loaf_is_ascending(t_data *data)
 {
 	int		i;
 	int		j;
@@ -60,7 +121,7 @@ int		loaf_is_ascending(t_data *data)
 	return (TRUE);
 }
 
-int		loaf_is_descending(t_data *data)
+int			loaf_is_descending(t_data *data)
 {
 	int		i;
 	int		j;
@@ -88,7 +149,7 @@ int		loaf_is_descending(t_data *data)
 	return (TRUE);
 }
 
-int		is_sorted(t_input *input)
+int			is_sorted(t_input *input)
 {
 	t_list	*front;
 	t_list	*back;
