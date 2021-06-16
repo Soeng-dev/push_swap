@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:55:17 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/14 23:24:32 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/16 10:40:38 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,34 +86,25 @@ void		sort(t_input *input)
 			else
 				sort_cmd = cmd_rr;
 			while (is_sorted(input) == FALSE)
-			{
 				sort_cmd('a', &input->a.stack, &input->b.stack);
-//				print_stacks(input);	print_loaf(input);
-//				scanf("%c", &c);
-			}
 		}
 		else
 		{
 			divide_move(&info, input, A_TO_B);
-//			printf("\n\nafter divmove \n");
-//			print_stacks(input);	print_loaf(input);
 			while (input->b.loaf)
 			{
 				if (*(int *)input->b.loaf->content == 2 || 
 					*(int *)input->b.loaf->content == 3)
-				{sort_directly(input, B_TO_A);
-//					printf("\n\nafter st dir btoa\n");
-//					print_stacks(input);	print_loaf(input);
-				}
+					sort_directly(input, B_TO_A);
 				else
 				{
 					divide_move(&info, input, B_TO_A);
-					rotate_loaf('a', input);
-
+					if (*(int *)input->a.loaf->content == 2 || 
+						*(int *)input->a.loaf->content == 3)
+						sort_directly(input, A_TO_B);
+					else
+						rotate_loaf('a', input);
 				}
-
-//					print_stacks(input);	print_loaf(input);
-//					scanf("%c", &c);
 			}
 		}
 	}
