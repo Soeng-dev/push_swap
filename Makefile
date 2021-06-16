@@ -11,9 +11,11 @@ LIB_PATH = ./includes/libft/
 SRC = ./srcs/main.c							\
 	  ./srcs/command.c						\
 	  ./srcs/in_out.c						\
-	  ./srcs/stack.c						\
-	  ./srcs/utils/utils_general.c			\
-	  ./srcs/utils/utils_push_swap.c		\
+	  ./srcs/stack/general.c				\
+	  ./srcs/stack/adhoc.c					\
+	  ./srcs/utils/pivot.c					\
+	  ./srcs/utils/general.c				\
+	  ./srcs/utils/status.c					\
 	  ./srcs/sort/set_sort.c				\
 	  ./srcs/sort/loaf.c					\
 	  ./srcs/sort/sort3to_a.c				\
@@ -26,7 +28,7 @@ OBJ = $(SRC:.c=.o)
 # Compile
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 
 all : $(NAME) libft
 

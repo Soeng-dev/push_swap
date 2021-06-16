@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:55:17 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/16 10:40:38 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/16 12:57:47 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,62 +49,66 @@ void		sort_directly(t_input *input, int from_to)
 	return ;
 }
 
+static void	sort_divided(t_input *input)
+{
+	int		i;
+	int		mark;
+	int		smallest;
+	t_cmd	sort_cmd;
+	t_list	*st;
+
+	smallest = INT_MAX;
+	i = 0;
+	st = input->a.stack;
+	while (st)
+	{
+		++i;
+		if (*(int *)st->content < smallest)
+		{
+			mark = i;
+			smallest = *(int *)st->content;
+		}
+		st = st->next;
+	}
+	if (mark < ft_lstsize(input->a.stack) / 2)
+		sort_cmd = cmd_r;
+	else
+		sort_cmd = cmd_rr;
+	while (is_sorted(input) == FALSE)
+		sort_cmd('a', &input->a.stack, &input->b.stack);
+}
+
+static void	sort_loaf_btoa(t_input *input, t_sort_info *info)
+{
+	divide_move(info, input, B_TO_A);
+	if (*(int *)input->a.loaf->content == 2 ||
+		*(int *)input->a.loaf->content == 3)
+		sort_directly(input, A_TO_B);
+	else
+		rotate_loaf('a', input);
+}
+
 void		sort(t_input *input)
 {
 	t_sort_info		info;
 
-				//	char c;//test
 	while (is_sorted(input) == FALSE)
 	{
-		if (*(int *)input->a.loaf->content == 2 || 
+		if (*(int *)input->a.loaf->content == 2 ||
 			*(int *)input->a.loaf->content == 3)
 			sort_directly(input, A_TO_B);
-		//optimization of ending sort
 		else if (is_divided(input->a.loaf) && !input->b.loaf)
-		{
-			int		i;
-			int		mark;
-			int		smallest;
-			t_cmd	sort_cmd;
-			t_list	*st;
-
-			smallest = INT_MAX;
-			i = 0;
-			st = input->a.stack;
-			while (st)
-			{
-				++i;
-				if (*(int *)st->content < smallest)
-				{
-					mark = i;
-					smallest = *(int *)st->content;
-				}
-				st = st->next;
-			}
-			if (mark < ft_lstsize(input->a.stack) / 2)
-				sort_cmd = cmd_r;
-			else
-				sort_cmd = cmd_rr;
-			while (is_sorted(input) == FALSE)
-				sort_cmd('a', &input->a.stack, &input->b.stack);
-		}
+			sort_divided(input);
 		else
 		{
 			divide_move(&info, input, A_TO_B);
 			while (input->b.loaf)
 			{
-				if (*(int *)input->b.loaf->content == 2 || 
+				if (*(int *)input->b.loaf->content == 2 ||
 					*(int *)input->b.loaf->content == 3)
 					sort_directly(input, B_TO_A);
 				else
-				{
-					divide_move(&info, input, B_TO_A);
-					if (*(int *)input->a.loaf->content == 2 || 
-						*(int *)input->a.loaf->content == 3)
-						sort_directly(input, A_TO_B);
-					else
-						rotate_loaf('a', input);
-				}
+					sort_loaf_btoa(input, &info);
 			}
 		}
 	}

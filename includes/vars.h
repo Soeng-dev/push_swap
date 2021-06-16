@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 19:09:22 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/14 22:00:22 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/16 13:20:30 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@
 # define FALSE	0
 
 # include <limits.h>
-# include "libft/libft.h"
+# include <unistd.h>
 
-#include <stdio.h>		//test
-#include <fcntl.h>
-#include <unistd.h>
+# include "libft/libft.h"
 
 struct	s_int_arr
 {
@@ -44,7 +42,7 @@ struct	s_input
 };
 typedef struct s_input		t_input;
 
-struct s_move
+struct	s_move
 {
 	int		count;
 	int		(*rule)(int, int);
@@ -59,7 +57,7 @@ struct	s_target
 };
 typedef struct s_target		t_target;
 
-struct s_sort_info
+struct	s_sort_info
 {
 	t_move		move;
 	t_target	orig;
@@ -68,5 +66,5 @@ struct s_sort_info
 };
 typedef struct s_sort_info	t_sort_info;
 
-typedef void (*t_cmd)(char, t_list **, t_list **);
+typedef void	(*t_cmd)(char, t_list **, t_list **);
 #endif

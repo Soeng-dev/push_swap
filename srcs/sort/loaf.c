@@ -6,11 +6,25 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:55:17 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/11 21:13:00 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/16 12:41:36 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/sort.h"
+
+static void	set_loaf_result(t_sort_info *info, int unmoved, int moved)
+{
+	if (unmoved == 0)
+		pop(&info->orig.data->loaf);
+	else
+	{
+		*(int *)info->orig.data->loaf->content = unmoved;
+		rotate(&info->orig.data->loaf, ROT_FORWARD);
+	}
+	if (moved)
+		st_add(&info->dest.data->loaf, moved);
+	return ;
+}
 
 void		move_by_rule(void *sort_info, t_input *input)
 {
@@ -25,8 +39,8 @@ void		move_by_rule(void *sort_info, t_input *input)
 	unmoved = *(int *)info->orig.data->loaf->content;
 	while (--i >= 0)
 	{
-		if (info->move.rule												\
-			(*(int *)info->orig.data->stack->content, info->pivot)		\
+		if (info->move.rule(
+			*(int *)info->orig.data->stack->content, info->pivot)
 			== TRUE)
 		{
 			cmd_p(info->dest.name, &input->a.stack, &input->b.stack);
@@ -36,15 +50,7 @@ void		move_by_rule(void *sort_info, t_input *input)
 		else
 			cmd_r(info->orig.name, &input->a.stack, &input->b.stack);
 	}
-	if (unmoved == 0)
-		pop(&info->orig.data->loaf);
-	else
-	{
-		*(int *)info->orig.data->loaf->content = unmoved;
-		rotate(&info->orig.data->loaf, ROT_FORWARD);
-	}
-	if (moved)
-		st_add(&info->dest.data->loaf, moved);
+	set_loaf_result(info, unmoved, moved);
 	return ;
 }
 

@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 18:22:50 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/07 17:49:47 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/16 12:43:41 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,14 @@ static void	sort3_a(int first, int second, int third, t_input *input)
 
 static void	sort3_btoa_2(int first, int second, int third, t_input *input)
 {
-	if (third < first && first < second)
+	if (second < first && first < third)
+	{
+		cmd_repeat(cmd_p, input, 'a', 2);
+		cmd_repeat(cmd_r, input, 'a', 2);
+		cmd_p('a', &input->a.stack, &input->b.stack);
+		cmd_r('a', &input->a.stack, &input->b.stack);
+	}
+	else if (third < first && first < second)
 	{
 		cmd_s('b', &input->a.stack, &input->b.stack);
 		cmd_repeat(cmd_p, input, 'a', 3);
@@ -80,7 +87,6 @@ static void	sort3_btoa_2(int first, int second, int third, t_input *input)
 		cmd_repeat(cmd_p, input, 'a', 3);
 		cmd_repeat(cmd_r, input, 'a', 3);
 	}
-	return ;
 }
 
 static void	sort3_btoa(int first, int second, int third, t_input *input)
@@ -102,13 +108,6 @@ static void	sort3_btoa(int first, int second, int third, t_input *input)
 		cmd_r('a', &input->a.stack, &input->b.stack);
 		cmd_repeat(cmd_p, input, 'a', 2);
 		cmd_repeat(cmd_r, input, 'a', 2);
-	}
-	else if (second < first && first < third)
-	{
-		cmd_repeat(cmd_p, input, 'a', 2);
-		cmd_repeat(cmd_r, input, 'a', 2);
-		cmd_p('a', &input->a.stack, &input->b.stack);
-		cmd_r('a', &input->a.stack, &input->b.stack);
 	}
 	else
 		sort3_btoa_2(first, second, third, input);

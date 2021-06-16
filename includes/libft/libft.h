@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 16:57:44 by soekim            #+#    #+#             */
-/*   Updated: 2021/05/16 16:01:23 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/16 13:23:24 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-struct	s_list
+struct		s_list
 {
 	void			*content;
 	struct s_list	*next;

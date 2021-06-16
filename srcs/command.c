@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   command.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/16 11:20:33 by soekim            #+#    #+#             */
+/*   Updated: 2021/06/16 11:21:17 by soekim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/command.h"
 
@@ -79,7 +90,7 @@ void	cmd_rr(char target, t_list **st_a, t_list **st_b)
 	return ;
 }
 
-void	cmd_repeat(void (*cmd)(char, t_list **, t_list **),				\
+void	cmd_repeat(void (*cmd)(char, t_list **, t_list **), \
 					t_input *input, char target, int n)
 {
 	while (--n >= 0)

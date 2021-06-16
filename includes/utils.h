@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/16 13:22:54 by soekim            #+#    #+#             */
+/*   Updated: 2021/06/16 13:22:58 by soekim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
@@ -17,9 +28,13 @@ int		is_bigger(int target, int pivot);
 int		is_smaller(int target, int pivot);
 
 /*
-**		push_swap
+**		pivot
 */
 int		get_pivot(t_data *data);
+
+/*
+**		status
+*/
 int		is_divided(t_list *loaf);
 int		loaf_is_ascending(t_data *data);
 int		loaf_is_descending(t_data *data);

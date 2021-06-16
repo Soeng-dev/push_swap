@@ -6,13 +6,13 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 17:53:16 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/02 16:12:03 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/16 12:30:28 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/in_out.h"
 
-int		read_int(char *s, int *is_error)
+int			read_int(char *s, int *is_error)
 {
 	long int	n;
 
@@ -31,23 +31,16 @@ int		read_int(char *s, int *is_error)
 	return (n);
 }
 
-void	read_input(char **argv, t_list **st)
+void		read_input(int argc, char **argv, t_list **st)
 {
 	int		is_error;
 	t_list	*temp;
-	int		i;
 
-	i = 0;
 	is_error = FALSE;
-	while (*argv)
+	while (--argc >= 1)
 	{
-		++i;
 		++argv;
-	}
-	while (--i >= 0)
-	{
-		argv--;
-		st_add(st, read_int(*argv, &is_error));
+		st_add_last(st, read_int(*argv, &is_error));
 		temp = (*st)->next;
 		while (temp)
 		{
@@ -65,7 +58,32 @@ void	read_input(char **argv, t_list **st)
 	return ;
 }
 
-void	print_stacks(t_input *input)
+static void	prt_bigger_stack(t_list *st_a, t_list *st_b, int *len_a, int *len_b)
+{
+	if (*len_a > *len_b)
+	{
+		while (*len_a > *len_b)
+		{
+			ft_putnbr_fd(*(int *)st_a->content, 1);
+			ft_putchar_fd('\n', 1);
+			st_a = st_a->next;
+			--(*len_a);
+		}
+	}
+	else if (*len_b > *len_a)
+	{
+		while (*len_b > *len_a)
+		{
+			ft_putstr_fd("\t\t\t\t", 1);
+			ft_putnbr_fd(*(int *)st_b->content, 1);
+			ft_putchar_fd('\n', 1);
+			st_b = st_b->next;
+			--(*len_b);
+		}
+	}
+}
+
+void		print_stacks(t_input *input)
 {
 	int		len_a;
 	int		len_b;
@@ -77,27 +95,7 @@ void	print_stacks(t_input *input)
 	len_a = ft_lstsize(st_a);
 	len_b = ft_lstsize(st_b);
 	ft_putchar_fd('\n', 1);
-	if (len_a > len_b)
-	{
-		while (len_a > len_b)
-		{
-			ft_putnbr_fd(*(int *)st_a->content, 1);
-			ft_putchar_fd('\n', 1);
-			st_a = st_a->next;
-			--len_a;
-		}
-	}
-	else if (len_b > len_a)
-	{
-		while (len_b > len_a)
-		{
-			ft_putstr_fd("\t\t\t\t", 1);
-			ft_putnbr_fd(*(int *)st_b->content, 1);
-			ft_putchar_fd('\n', 1);
-			st_b = st_b->next;
-			--len_b;
-		}
-	}
+	prt_bigger_stack(st_a, st_b, &len_a, &len_b);
 	while (--len_a >= 0)
 	{
 		ft_putnbr_fd(*(int *)st_a->content, 1);
@@ -110,25 +108,4 @@ void	print_stacks(t_input *input)
 	ft_putstr_fd("----\t\t\t\t----\n", 1);
 	ft_putstr_fd("a\t\t\t\tb\n\n", 1);
 	return ;
-}
-
-void	print_loaf(t_input *input)
-{
-	t_list	*loaf;
-
-	printf("loaf a\n");
-	loaf = input->a.loaf;
-	while (loaf)
-	{
-		printf("%d\n", *(int *)loaf->content);
-		loaf = loaf->next;
-	}
-	printf("loaf b\n");
-	loaf = input->b.loaf;
-	while (loaf)
-	{
-		printf("%d\n", *(int *)loaf->content);
-		loaf = loaf->next;
-	}
-	printf("\n");
 }

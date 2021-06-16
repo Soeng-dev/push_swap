@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:56:46 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/14 22:47:42 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/16 12:34:55 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static int	count_mincmd(t_sort_info *info)
 	while (tar_st)
 	{
 		++i;
-		if (info->move.rule									\
-			(*(int *)tar_st->content, info->pivot) == TRUE)
+		if (info->move.rule(
+			*(int *)tar_st->content, info->pivot) == TRUE)
 			count = i;
 		tar_st = tar_st->next;
 	}
@@ -63,7 +63,6 @@ void		set_sort_info(t_sort_info *info, t_input *input, int from_to)
 			info->move.count = count_mincmd(info);
 		else
 			info->move.count = *(int *)info->orig.data->loaf->content;
-
 	}
 	else if (from_to == B_TO_A)
 	{
