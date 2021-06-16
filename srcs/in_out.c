@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 17:53:16 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/16 12:30:28 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/16 20:28:15 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int			read_int(char *s, int *is_error)
 	n = 0;
 	pass_charset(&s, " \t\f");
 	n = ft_atoi(s);
-	if (n > (long int)INT_MAX || n < (long int)INT_MIN)
+	if (n > (long int)INT_MAX || n < (long int)INT_MIN ||
+		(n == 0 && *s != '0') || (n == -1 && ft_strncmp(s, "-1", ft_strlen(s))))
 		*is_error = TRUE;
 	if (*s == '-')
 		++s;

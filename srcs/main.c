@@ -6,13 +6,13 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 15:02:46 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/16 12:50:36 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/16 20:51:46 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
 #include "../includes/push_swap.h"
+
+#include <stdio.h>
 
 int		main(int argc, char *argv[])
 {

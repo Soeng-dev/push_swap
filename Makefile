@@ -4,6 +4,7 @@ NAME = push_swap
 
 
 # Files
+
 EXT_LIB = libft.a
 
 LIB_PATH = ./includes/libft/
@@ -26,18 +27,20 @@ OBJ = $(SRC:.c=.o)
 
 
 # Compile
+
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-all : $(NAME) libft
+all : $(NAME)
 
-$(NAME) : $(OBJ) libft
+$(NAME) : libft $(OBJ)
 		$(CC) $(CFLAGS) $(LIB_PATH)$(EXT_LIB) $(OBJ) -o $(NAME)
 
 
 
 # Clean, Re
+
 RM : rm -f
 
 clean : clean_libft
@@ -47,6 +50,7 @@ fclean : clean fclean_libft
 		$(RM) $(NAME)
 
 re : fclean all
+
 
 
 
