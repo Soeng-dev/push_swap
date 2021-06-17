@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 13:18:30 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/16 13:18:34 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/17 15:29:21 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,11 @@ void	divide_move(t_sort_info *info, t_input *input, int from_to);
 void	sort_directly(t_input *input, int from_to);
 void	sort3_to_a(t_input *input, int from_to);
 void	sort(t_input *input);
+
+/*
+**		small
+*/
+void	sort3(t_input *input);
+void	sort5(t_input *input);
 
 #endif

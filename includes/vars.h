@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 19:09:22 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/16 17:30:29 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/17 16:13:36 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 
 # include <limits.h>
 # include <unistd.h>
-
-#include <stdio.h>//test
-
 
 # include "libft/libft.h"
 

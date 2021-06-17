@@ -19,6 +19,7 @@ SRC = ./srcs/main.c							\
 	  ./srcs/utils/status.c					\
 	  ./srcs/sort/set_sort.c				\
 	  ./srcs/sort/loaf.c					\
+	  ./srcs/sort/small.c					\
 	  ./srcs/sort/sort3to_a.c				\
 	  ./srcs/sort/sort.c
 
@@ -30,7 +31,7 @@ OBJ = $(SRC:.c=.o)
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 all : $(NAME)
 
