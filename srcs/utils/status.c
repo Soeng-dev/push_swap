@@ -6,11 +6,29 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 12:59:03 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/16 13:06:34 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/21 19:51:27 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/utils.h"
+
+int			check_duplicate(t_list *list)
+{
+	t_list	*back;
+
+	while (list)
+	{
+		back = list->next;
+		while (back)
+		{
+			if (*(int*)list->content == *(int*)back->content)
+				return (TRUE);
+			back = back->next;
+		}
+		list = list->next;
+	}
+	return (FALSE);
+}
 
 int			is_divided(t_list *loaf)
 {

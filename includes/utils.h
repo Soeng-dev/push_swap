@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 13:22:54 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/16 13:22:58 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/21 19:50:06 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int		get_pivot(t_data *data);
 /*
 **		status
 */
+int		check_duplicate(t_list *list);
 int		is_divided(t_list *loaf);
 int		loaf_is_ascending(t_data *data);
 int		loaf_is_descending(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 17:53:16 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/16 20:28:15 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/21 19:52:35 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,15 @@ int			read_int(char *s, int *is_error)
 void		read_input(int argc, char **argv, t_list **st)
 {
 	int		is_error;
-	t_list	*temp;
 
 	is_error = FALSE;
 	while (--argc >= 1)
 	{
 		++argv;
 		st_add_last(st, read_int(*argv, &is_error));
-		temp = (*st)->next;
-		while (temp)
-		{
-			if (*(int*)(*st)->content == *(int*)temp->content)
-				is_error = TRUE;
-			temp = temp->next;
-		}
 	}
+	if (check_duplicate(*st) == TRUE)
+		is_error = TRUE;
 	if (is_error)
 	{
 		ft_lstclear(st, free);
