@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:12:38 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/17 16:13:23 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/21 21:36:53 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,16 @@ void	sort3(t_input *input)
 
 void	sort5(t_input *input)
 {
-	t_sort_info	info;
+	t_sort_info		info;
 
 	set_sort_info(&info, input, A_TO_B);
+	++info.pivot;
 	info.move.rule = is_smaller;
-	divide_move(&info, input, A_TO_B);
-	if (loaf_is_descending(&input->a))
-		cmd_s('a', &input->a.stack, &input->b.stack);
-	sort_directly(input, B_TO_A);
+	info.move.count = count_mincmd(&info);
+	info.move.func(&info, input);
+	sort3(input);
+	if (loaf_is_ascending(&input->b))
+		cmd_s('b', &input->a.stack, &input->b.stack);
+	cmd_repeat(cmd_p, input, 'a', 2);
 	return ;
 }

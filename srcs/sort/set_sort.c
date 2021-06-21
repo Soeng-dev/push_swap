@@ -6,13 +6,13 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:56:46 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/16 12:34:55 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/21 21:26:26 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/sort.h"
 
-static int	count_mincmd(t_sort_info *info)
+int			count_mincmd(t_sort_info *info)
 {
 	int		i;
 	int		count;

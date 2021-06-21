@@ -6,7 +6,7 @@
 /*   By: soekim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 13:18:30 by soekim            #+#    #+#             */
-/*   Updated: 2021/06/17 15:29:21 by soekim           ###   ########.fr       */
+/*   Updated: 2021/06/21 20:35:45 by soekim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 /*
 **		set sort
 */
+int		count_mincmd(t_sort_info *info);
 void	set_target(t_sort_info *info, t_input *input, int from_to);
 void	set_sort_info(t_sort_info *info, t_input *input, int from_to);
 
